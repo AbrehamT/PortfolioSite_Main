@@ -8,6 +8,7 @@ interface ExperienceItem {
   date: string;
   bullets: string[];
   link?: string;
+  impact?: string;
 }
 
 const experiences: ExperienceItem[] = [
@@ -17,28 +18,29 @@ const experiences: ExperienceItem[] = [
     location: "Las Vegas, NV (Remote)",
     date: "August 2024 - Present",
     bullets: [
-      "Partnered with a full-time Klaviyo engineer to build font importing and storing infrastructure so that customers can use custom fonts in their Klaviyo-created content, allowing them to maintain a cohesive brand throughout their website",
-      "Used React, Typescript, and Redux to build a font management interface to incorporate user's custom fonts into their content",
-      "Worked on and received approval for a plan for the project architecture, including data models, type structures, and an API contract",
-      "Partnered closely with Product and Design to build with the user experience in mind",
-      "Wrote automated tests using React Testing Library & did extensive manual testing of each aspect of the feature"
-    ]
+      "Developing a comprehensive end-to-end application leveraging Large Language Models (LLMs) to optimize quote generation for large scale print jobs. Automated processes include: email retrieval, classification of emails as quote requests, quote calculation, and response generation.",
+      "Using Typescript to build a scalable backend API that handles authentication, and integrates with a frontend React application.",
+      // "Creating AI agents using LLMs and other Machine Learning models to automate the quote generation process.",
+      "Set up, managed and deployed to several AWS EC2 instances.",
+      "Created a CI-CD pipeline using GitHub Actions for automated testing and deployment.",
+    ],
+    impact: "The apps automated quote generation system greatly improved the quote generation process for large scale print jobs. Additionally, its CRM capabilities improved customer management and increased sales."
   },
   {
     title: "Researcher and AI Software Developer for Alzheimer's Disease Research",
     company: "University of Las Vegas, Nevada",
     location: "Las Vegas, NV",
     date: "August 2024 - Present",
-    bullets: [
-      "Used video processing, AI, and ML to automate the labeling of babies' gaze direction in early cognition research videos",
-      "Completed the CITI Program Human Research: Data or Specimens Only Research - Basic Course",
-      "Discussed and outlined the ethical ramifications of the project alongside several different ethicists",
-      "Created and tested several classification models to label babies' gaze direction using GCP Video Intelligence",
-      "Figured out how to and wrote documentation for connecting to a Debian VM from a Windows PC with X11 forwarding",
-      "Modified OpenGaze docker implementation to use X11 forwarding in order to resolve core dumping issues",
-      "Wrote a Python script that takes in an OpenGaze video processing output and converts it into a properly-formatted gaze label TSV"
+    "bullets": [
+      "Assisted in the development of an LLM-powered chatbot to support researchers in neurodegenerative disease studies.",
+      "Performed large-scale text mining on medical research papers to train LLMs for domain-specific tasks.",
+      "Designed and implemented pipelines to enable efficient retrieval and analysis of research data.",
+      "Collaborated with cross-functional teams to enhance productivity and decision-making for research projects.",
+      "Created and tested machine learning models to streamline information extraction and question answering.",
+      "Documented workflows and methodologies to support future developments in AI research."
     ],
-    link: "https://example.com/project-link"
+    // link: "https://example.com/project-link"
+    impact: "The project enhances research efficiency, enabling faster discoveries and better data analysis in neurodegenerative disease studies. By supporting researchers with AI tools, it accelerates treatment development and improves patient outcomes while advancing medical knowledge."
   }
 ];
 
@@ -64,6 +66,12 @@ const Experience = () => {
                       <li key={idx}>{bullet}</li>
                     ))}
                   </ul>
+                  {experience.impact && (
+                    <div className="mt-4">
+                      <h4 className="font-bold text-black mb-2">Impact</h4>
+                      <p className="text-gray-700">{experience.impact}</p>
+                    </div>
+                  )}
                   {experience.link && (
                     <div className="mt-4">
                       View the open-source project my work was added to{' '}
