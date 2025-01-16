@@ -18,13 +18,13 @@ const experiences: ExperienceItem[] = [
     location: "Las Vegas, NV (Remote)",
     date: "August 2024 - Present",
     bullets: [
-      "Developing a comprehensive end-to-end application leveraging Large Language Models (LLMs) to optimize quote generation for large scale print jobs. Automated processes include: email retrieval, classification of emails as quote requests, quote calculation, and response generation.",
+      "Developing a comprehensive end-to-end application leveraging Large Language Models to optimize quote generation for large scale manufacturing jobs.",
       "Using Typescript to build a scalable backend API that handles authentication, and integrates with a frontend React application.",
       // "Creating AI agents using LLMs and other Machine Learning models to automate the quote generation process.",
       "Set up, managed and deployed to several AWS EC2 instances.",
       "Created a CI-CD pipeline using GitHub Actions for automated testing and deployment.",
     ],
-    impact: "The apps automated quote generation system greatly improved the quote generation process for large scale print jobs. Additionally, its CRM capabilities improved customer management and increased sales."
+    impact: "The apps automated quote generation system greatly improved the quote generation process for large scale jobs. Additionally, its CRM capabilities improved customer management and increased sales."
   },
   {
     title: "Researcher and AI Software Developer for Alzheimer's Disease Research",
