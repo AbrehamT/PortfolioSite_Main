@@ -15,8 +15,8 @@ const experiences: ExperienceItem[] = [
   {
     title: "Software Engineer Intern",
     company: "Haig's Quality Printing",
-    location: "Las Vegas, NV (Remote)",
-    date: "August 2024 - Present",
+    location: "Las Vegas, NV (Hybrid)",
+    date: "June 2024 - Present",
     bullets: [
       "Developing a comprehensive end-to-end application leveraging Large Language Models to optimize quote generation for large scale manufacturing jobs.",
       "Using Typescript to build a scalable backend API that handles authentication, and integrates with a frontend React application.",
@@ -25,6 +25,17 @@ const experiences: ExperienceItem[] = [
       "Created a CI-CD pipeline using GitHub Actions for automated testing and deployment.",
     ],
     impact: "The apps automated quote generation system greatly improved the quote generation process for large scale jobs. Additionally, its CRM capabilities improved customer management and increased sales."
+  },
+  {
+    title: "Austonomous Systems Engineer Intern",
+    company: "Haig's Quality Printing",
+    location: "Las Vegas, NV (Hybrid)",
+    date: "August 2024 - Present",
+    bullets: [
+      "Contributed to the development of a robust pipeline of vision models for enabling autonomous systems to perform complex, dexterous tasks in a manufacturing environment.",
+      "Collected and processed 3D PointCloud data using StereoVision cameras, training PointNet models for object classification and image segmentation.",
+      "Researched Reinforcement Learning algorithms, including Markov Decision Processes and Deep-Q-Network architectures, to map vision model outputs to agent actions, enhancing decision-making capabilities."
+    ],
   },
   {
     title: "Researcher and AI Software Developer for Alzheimer's Disease Research",
