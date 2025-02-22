@@ -27,7 +27,7 @@ const Footer = () => {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:abrehamtadesse95@gmail.com"
+              href="mailto:tadesa1@unlv.nevada.edu"
               className="hover:text-gray-400 transition-colors"
             >
               <Mail className="w-5 h-5" />
