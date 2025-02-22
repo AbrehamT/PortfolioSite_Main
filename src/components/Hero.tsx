@@ -24,7 +24,7 @@ const Hero = () => {
               <Linkedin className="w-6 h-6" />
               <span className="text-xs mt-1">LinkedIn</span>
             </a>
-            <a href="mailto:abrehamtadesse95@gmail.com"
+            <a href="mailto:tadesa1@unlv.nevada.edu"
                className="p-2 hover:text-gray-400 transition-colors flex flex-col items-center">
               <Mail className="w-6 h-6" />
               <span className="text-xs mt-1">Email</span>
