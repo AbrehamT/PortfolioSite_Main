@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, X, ArrowRight } from 'lucide-react';
-import { Project } from '../../types';
+// import { Project } from '../../types';
 import { projects } from '../../data/projects';
 
 const ProjectsSection = () => {
