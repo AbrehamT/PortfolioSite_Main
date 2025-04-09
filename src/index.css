@@ -31,3 +31,15 @@ a {
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-black text-white;
+}
