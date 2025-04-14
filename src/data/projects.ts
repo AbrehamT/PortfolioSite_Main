@@ -1,44 +1,74 @@
 import { Project } from '../types';
 
 export const projects: Project[] = [
-  {
-    id: 1,
-    title: "Real-time Satellite Image Processor",
-    description: "Open source service for real-time satellite imagery processing using LandSat and Sentinel data.",
-    technologies: ["Python", "OpenCV", "Google Earth Engine", "Machine Learning", "Image Processing"],
-    caseStudy: `## Project Overview
+//   {
+//     id: 1,
+//     title: "Real-time Satellite Image Processor",
+//     description: "Open source service for real-time satellite imagery processing using LandSat and Sentinel data.",
+//     technologies: ["Python", "OpenCV", "Google Earth Engine", "Machine Learning", "Image Processing"],
+//     caseStudy: `## Project Overview
 
-An open source service for real-time satellite imagery processing, combining raw satellite and traditional image processing techniques to create a publicly available dataset of real-time satellite images.
+// An open source service for real-time satellite imagery processing, combining raw satellite and traditional image processing techniques to create a publicly available dataset of real-time satellite images.
 
-## Approach
+// ## Approach
 
-1. **Data Collection**: Leveraged LandSat and Sentinel satellite data feeds for raw imagery acquisition.
+// 1. **Data Collection**: Leveraged LandSat and Sentinel satellite data feeds for raw imagery acquisition.
    
-2. **Image Processing Pipeline**:
-   - Developed advanced algorithms for image enhancement and feature extraction
-   - Implemented spectral analysis to identify land features and environmental changes
-   - Created machine learning models to classify terrain types and detect changes over time
+// 2. **Image Processing Pipeline**:
+//    - Developed advanced algorithms for image enhancement and feature extraction
+//    - Implemented spectral analysis to identify land features and environmental changes
+//    - Created machine learning models to classify terrain types and detect changes over time
    
-3. **Technical Implementation**:
-   - Built with Python and OpenCV for core image processing
-   - Integrated with Google Earth Engine for additional data sources and processing capabilities
-   - Designed a scalable architecture for processing large volumes of satellite data
+// 3. **Technical Implementation**:
+//    - Built with Python and OpenCV for core image processing
+//    - Integrated with Google Earth Engine for additional data sources and processing capabilities
+//    - Designed a scalable architecture for processing large volumes of satellite data
    
-4. **Public Data Service**: Created APIs and data formats for public consumption of processed imagery.
+// 4. **Public Data Service**: Created APIs and data formats for public consumption of processed imagery.
+
+// ## Results
+
+// - Successfully processed thousands of satellite images with high accuracy
+// - Created a valuable dataset for environmental researchers and urban planners
+// - Contributed to open-source geospatial community with reusable components
+
+// ## Impact
+
+// The project has enabled researchers to monitor environmental changes more effectively and has been utilized in several environmental impact studies.`,
+//     github: "https://github.com/AbrehamT/satellite-imagery",
+//     demo: "https://satellite-demo.abrehamtadesse.com",
+//     image: "https://miro.medium.com/v2/resize:fit:1400/1*rBWzkqBaOId6niQbcysuvg.png"
+//   },
+{
+   id: 4,
+   title: "Autonomous Racing",
+   description: "Programmed an RC car 1/10th the size of an F1 car to autonomously race against other cars while avoiding obstacles.",
+   technologies: ["ROS2", "Python"],
+   caseStudy: `## Project Overview
+
+Programmed an RC car 1/10th the size of an F1 car to autonomously race against other cars while avoiding obstacles. Implemented control systems such as Model Predictive Controllers, PID Controllers, and vision algorithms such as SLAM.
+
+## Technical Approach
+
+1. **Control Systems**: 
+  - Implemented Model Predictive Controllers and PID Controllers for precise control.
+  - Developed vision algorithms such as SLAM for obstacle detection and avoidance.
+
+2. **Testing & Validation**:
+  - Conducted extensive simulations to verify control algorithms.
+  - Performed real-world tests to ensure reliable autonomous operation.
 
 ## Results
 
-- Successfully processed thousands of satellite images with high accuracy
-- Created a valuable dataset for environmental researchers and urban planners
-- Contributed to open-source geospatial community with reusable components
+- Successfully programmed the RC car to navigate complex racing environments autonomously.
+- Achieved reliable obstacle avoidance and competitive racing performance.
 
 ## Impact
 
-The project has enabled researchers to monitor environmental changes more effectively and has been utilized in several environmental impact studies.`,
-    github: "https://github.com/AbrehamT/satellite-imagery",
-    demo: "https://satellite-demo.abrehamtadesse.com",
-    image: "https://miro.medium.com/v2/resize:fit:1400/1*rBWzkqBaOId6niQbcysuvg.png"
-  },
+The project demonstrated the feasibility of using advanced control systems and vision algorithms in small-scale autonomous vehicles, paving the way for further research and development in autonomous racing technologies.`,
+   github: "https://github.com/AbrehamT/autonomous-racing",
+   image: "https://f1tenth.readthedocs.io/en/stable/_images/f1tenth_NX.png"
+ },
   {
     id: 2,
     title: "SEDS - Autonomous Payload Recovery System",
@@ -75,7 +105,7 @@ Designed and programmed an autonomous payload recovery system for a model rocket
 
 The payload recovery system successfully deployed in multiple rocket launches, providing consistent and reliable recovery of the rocket payload with minimal human intervention. The system achieved a 92% success rate across all test launches.`,
     github: "https://github.com/AbrehamT/SEDS-recovery",
-    image: "/assets/rocket-project.jpg"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhiOCh0NdM0iXyEAOpAg50K92YuDwfY99PqQ&s"
   },
   {
     id: 3,
@@ -114,5 +144,6 @@ As part of my undergraduate research work, I developed specialized large languag
 The models developed in this project are currently being used by biomedical researchers to rapidly synthesize information from the ever-growing corpus of Alzheimer's research, helping to identify new research directions and potential treatments.`,
     github: "https://github.com/AbrehamT/biomedical-nlp",
     image: "/assets/biomedical-nlp.jpg"
-  }
+  },
+
 ]; 

@@ -46,7 +46,9 @@ const Header = () => {
             </a>
           ))}
           <a 
-            href="#resume" 
+            href="https://drive.google.com/file/d/1HdrzUqa0F2VPaMQpx54qSfly8kpCj_NT/view?usp=drive_link" 
+            target="_blank" 
+            rel="noreferrer"
             className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md transition-colors"
           >
             Resume
