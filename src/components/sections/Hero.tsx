@@ -102,7 +102,15 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-gray-900 to-indigo-900">
+    <section 
+      id="home" 
+      className="relative pt-24 md:pt-32 pb-0"
+      style={{ 
+        background: 'var(--hero-bg)',
+        position: 'relative',
+        zIndex: 0
+      }}
+    >
       {/* Particle animation canvas */}
       <canvas 
         ref={canvasRef}

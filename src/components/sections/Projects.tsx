@@ -30,7 +30,16 @@ const ProjectsSection = () => {
   }, [activeProject]);
   
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gray-900">
+    <section 
+      id="projects" 
+      className="py-16 md:py-24" 
+      style={{ 
+        background: 'var(--section-bg-2)',
+        position: 'relative',
+        zIndex: 0,
+        paddingBottom: '2rem'
+      }}
+    >
       <div className="container mx-auto px-4 md:px-6">
         <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-gray-100">Projects</h2>
         <p className="text-gray-400 text-center mb-12">A showcase of my technical work and case studies</p>
