@@ -103,8 +103,7 @@ Designed and programmed an autonomous payload recovery system for a model rocket
 
 ## Results
 
-The payload recovery system successfully deployed in multiple rocket launches, providing consistent and reliable recovery of the rocket payload with minimal human intervention. The system achieved a 92% success rate across all test launches.`,
-    github: "https://github.com/AbrehamT/SEDS-recovery",
+ github: "https://github.com/AbrehamT/SEDS-recovery",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhiOCh0NdM0iXyEAOpAg50K92YuDwfY99PqQ&s"
   },
   {
