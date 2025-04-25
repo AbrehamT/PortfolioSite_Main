@@ -73,7 +73,7 @@ The project demonstrated the feasibility of using advanced control systems and v
     id: 2,
     title: "SEDS - Autonomous Payload Recovery System",
     description: "Designed and programmed an autonomous payload recovery system for a model rocket using microcontrollers.",
-    technologies: ["C/C++", "Arduino", "FreeRTOS", "Embedded Systems", "Sensor Fusion"],
+    technologies: ["C/C++", "Arduino", "FreeRTOS", "Embedded Systems"],
     caseStudy: `## Project Overview
 
 Designed and programmed an autonomous payload recovery system for a model rocket using microcontrollers and sensor data to deploy flaps and parachutes during descent.
@@ -89,21 +89,14 @@ Designed and programmed an autonomous payload recovery system for a model rocket
    - Created real-time operating system (RTOS) implementation for precise timing control
    - Developed sensor fusion algorithms to accurately determine rocket position and orientation
    - Implemented safety fallbacks to ensure recovery even in case of partial system failure
-   
-3. **Testing & Validation**:
-   - Conducted extensive simulations to verify algorithm performance
-   - Performed drop tests to validate mechanical systems
-   - Completed full system integration tests before rocket launches
 
 ## Challenges Overcome
 
-- Dealing with limited computational resources on embedded systems
 - Ensuring reliable operation in high-stress environments (high G-forces, vibration)
 - Creating robust algorithms that could handle sensor noise and variability
 
-## Results
-
- github: "https://github.com/AbrehamT/SEDS-recovery",
+// ## Results
+    // github: "https://github.com/AbrehamT/SEDS-recovery",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhiOCh0NdM0iXyEAOpAg50K92YuDwfY99PqQ&s"
   },
   {
