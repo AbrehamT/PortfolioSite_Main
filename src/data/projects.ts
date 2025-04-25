@@ -93,7 +93,7 @@ Designed and programmed an autonomous payload recovery system for a model rocket
 ## Challenges Overcome
 
 - Ensuring reliable operation in high-stress environments (high G-forces, vibration)
-- Creating robust algorithms that could handle sensor noise and variability`
+- Creating robust algorithms that could handle sensor noise and variability`,
 
 // ## Results
     // github: "https://github.com/AbrehamT/SEDS-recovery",
