@@ -22,6 +22,13 @@ const ExperienceSection = () => {
     {
       id: 1,
       role: "Software Engineer Intern",
+      company: "Nautilus X-Ray",
+      duration: "May 2025 - Present",
+      description: []
+    },
+    {
+      id: 2,
+      role: "Software Engineer Intern",
       company: "Haig's Quality Printing",
       duration: "June 2024 - Present",
       description: [
@@ -33,7 +40,7 @@ const ExperienceSection = () => {
       technologies: ["TypeScript", "Node.js", "NestJS", "PostgreSQL","Git", "AWS", "OAuth2.0", "JWT"]
     },
     {
-      id: 2,
+      id: 3,
       role: "Enterprise Applications Software Engineer",
       company: "University of Nevada, Las Vegas",
       duration: "February 2024 - July 2024",
@@ -45,7 +52,7 @@ const ExperienceSection = () => {
       technologies: ["ASP.Net", "C#", "MySQL", "JDBC", "Java"]
     },
     {
-      id: 3,
+      id: 4,
       role: "Undergraduate Researcher — DeepLearning and LLMs",
       company: "University of Nevada, Las Vegas",
       duration: "August 2024 - Present",
