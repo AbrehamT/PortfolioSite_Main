@@ -24,7 +24,10 @@ const ExperienceSection = () => {
       role: "Software Engineer Intern",
       company: "Nautilus X-Ray",
       duration: "May 2025 - Present",
-      description: []
+      description: ["Assisting in the development of software for the control, adjustment and manipulation of novel electron beam CT",
+          "Analyzing data and generating actionable responses using Python"
+      ],
+      technologies: []
     },
     {
       id: 2,
