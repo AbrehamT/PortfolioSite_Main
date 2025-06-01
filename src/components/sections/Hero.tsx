@@ -92,20 +92,20 @@ const initParticles = (canvas: HTMLCanvasElement) => {
 };
 
 
-const PinterestEmbed = () => {
-  return (
-    <div style={{ maxWidth: "100%", overflow: "hidden" }}>
-      <iframe
-        src="https://assets.pinterest.com/ext/embed.html?id=139470919704351588"
-        width="345"
-        height="790"
-        style={{ border: "none", maxWidth: "100%" }}
-        scrolling="no"
-        title="Pinterest Embed"
-      ></iframe>
-    </div>
-  );
-};
+// const PinterestEmbed = () => {
+//   return (
+//     <div style={{ maxWidth: "100%", overflow: "hidden" }}>
+//       <iframe
+//         src="https://assets.pinterest.com/ext/embed.html?id=139470919704351588"
+//         width="345"
+//         height="790"
+//         style={{ border: "none", maxWidth: "100%" }}
+//         scrolling="no"
+//         title="Pinterest Embed"
+//       ></iframe>
+//     </div>
+//   );
+// };
 
 
 const Hero = () => {
