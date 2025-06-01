@@ -91,6 +91,23 @@ const initParticles = (canvas: HTMLCanvasElement) => {
   };
 };
 
+
+const PinterestEmbed = () => {
+  return (
+    <div style={{ maxWidth: "100%", overflow: "hidden" }}>
+      <iframe
+        src="https://assets.pinterest.com/ext/embed.html?id=139470919704351588"
+        width="345"
+        height="790"
+        style={{ border: "none", maxWidth: "100%" }}
+        scrolling="no"
+        title="Pinterest Embed"
+      ></iframe>
+    </div>
+  );
+};
+
+
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -101,6 +118,7 @@ const Hero = () => {
     }
   }, []);
 
+  
   return (
     <section 
       id="home" 
@@ -144,7 +162,7 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="md:w-1/2 flex justify-center">
+          <div className="md:w-1/2 flex flex-col items-center gap-6">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600">
               <img 
                 src="/images/Me.png" 
@@ -152,6 +170,29 @@ const Hero = () => {
                 className="w-full h-full object-cover"
               />
             </div>
+
+            {/* Pinterest Embed */}
+            {/* <div style={{ maxWidth: '100%', overflow: 'hidden' }}>
+              <iframe
+                src="https://assets.pinterest.com/ext/embed.html?id=139470919704351588"
+                width="345"
+                height="790"
+                style={{ border: 'none', maxWidth: '100%' }}
+                scrolling="no"
+                title="Pinterest Embed"
+              ></iframe>
+            </div> */}
+            <div style={{ marginTop: '2rem', borderRadius: '12px', overflow: 'hidden' }}>
+            <iframe
+              src="https://open.spotify.com/embed/playlist/7kalSs40bWw9Ng7pTbUg7R?utm_source=generator"
+              width="100%"
+              height="352"
+              style={{ border: 'none', borderRadius: '12px' }}
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Spotify Playlist"
+            ></iframe>
+          </div>
           </div>
         </div>
         
