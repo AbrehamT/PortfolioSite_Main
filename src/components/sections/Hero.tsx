@@ -209,7 +209,7 @@ const Hero = () => {
             <Mail size={20} />
             <span>Email</span>
           </a>
-          <a href="https://drive.google.com/file/d/1TTjj3qRzYi2v-yaug0G2NTlbSYTlwBMH/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1vaazG7y3ytX6eTNJj5Q3MKU0Ef1w7VHP/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
             <FileText size={20} />
             <span>Resume</span>
           </a>
