@@ -182,17 +182,17 @@ const Hero = () => {
                 title="Pinterest Embed"
               ></iframe>
             </div> */}
-            <div style={{ marginTop: '2rem', borderRadius: '12px', overflow: 'hidden' }}>
+          {/* <div style={{ marginTop: '2rem', borderRadius: '12px', overflow: 'hidden' }}>
             <iframe
               src="https://open.spotify.com/embed/playlist/7kalSs40bWw9Ng7pTbUg7R?utm_source=generator"
               width="100%"
-              height="352"
+              height="152"
               style={{ border: 'none', borderRadius: '12px' }}
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
               title="Spotify Playlist"
             ></iframe>
-          </div>
+          </div> */}
           </div>
         </div>
         
@@ -209,7 +209,7 @@ const Hero = () => {
             <Mail size={20} />
             <span>Email</span>
           </a>
-          <a href="https://drive.google.com/file/d/1TTjj3qRzYi2v-yaug0G2NTlbSYTlwBMH/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1Hqec5zCDocAT5Pu9L-GqKWpOF4E6u69r/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
             <FileText size={20} />
             <span>Resume</span>
           </a>

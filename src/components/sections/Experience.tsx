@@ -16,7 +16,6 @@ interface Education {
   duration: string;
   description: string;
 }
-
 const ExperienceSection = () => {
   const experiences: Experience[] = [
     {
@@ -24,23 +23,25 @@ const ExperienceSection = () => {
       role: "Software Engineer Intern",
       company: "Nautilus X-Ray",
       duration: "May 2025 - Present",
-      description: ["Assisting in the development of software for the control, adjustment and manipulation of novel electron beam CT",
-          "Analyzing data and generating actionable responses using Python"
+      description: [
+        "Optimizing image reconstruction and scanner calibration algorithms in Python, applying numerical linear algebra, optimization theory, and signal processing techniques to improve accuracy and speed.",
+        "Developing C++ drivers to control high-precision motion hardware for a novel electron beam CT scanner, gaining hands-on experience with low-level programming and hardware interfaces.",
+        "Analyzing data obtained from CT scanner using Python and generating actionable reports and graphs."
       ],
-      technologies: []
+      technologies: ["Python", "C++", "Signal Processing", "Numerical Linear Algebra", "Optimization"]
     },
     {
       id: 2,
       role: "Software Engineer Intern",
       company: "Haig's Quality Printing",
-      duration: "June 2024 - Present",
+      duration: "June 2024 - May 2025",
       description: [
-        "Developed a full-stack Node.js application leveraging AI to automate quote generation for large-scale manufacturing jobs. Reduced quote turnaround time by 50% and improved customer to client communications.",
-        "Trained several Large Language Models to improve performance on automated downstream tasks for quote generation.",
-        "Implemented OAuth2.0 authentication integration with Google and Microsoft. Implemented a stateless JWT-based authorization system for secure and scalable access control.",
-        "Architected CI/CD pipelines using Github Actions, Docker and AWS ECS - enabling rapid and reliable production deployments. Improved developer productivity by containerizing micro-services and configuring nginx for local request routing, enabling immediate testing and faster debugging cycles"
+        "Developed a full-stack Node.js application leveraging Generative AI such as Large Language Models to automate quote generation for large-scale manufacturing jobs, reducing quote turnaround time by 50% and improving customer to client communications.",
+        "Deployed LLM Agents using Model Context Protocol (MCP) on AWS ECS to simplify the user onboarding process.",
+        "Implemented OAuth2.0 authentication integration with Google and Microsoft, alongside a stateless JWT-based authorization system for secure and scalable access control.",
+        "Architected CI/CD pipelines using Docker, GitHub Actions, and AWS ECS, enabling rapid and reliable production deployments. Improved developer productivity by containerizing micro-services and configuring Nginx for local request routing, enabling immediate testing and faster debugging cycles."
       ],
-      technologies: ["TypeScript", "Node.js", "NestJS", "PostgreSQL","Git", "AWS", "OAuth2.0", "JWT"]
+      technologies: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "Git", "AWS", "OAuth2.0", "JWT", "Docker", "Nginx", "MCP"]
     },
     {
       id: 3,
@@ -48,26 +49,27 @@ const ExperienceSection = () => {
       company: "University of Nevada, Las Vegas",
       duration: "February 2024 - July 2024",
       description: [
-        "Designed & Developed: scalable, and secure web applications using the ASP.Net framework using C#.",
-        "Managed: relational data at scale by building and maintaining MySQL tables, leveraging the JDBC API for backend integration in Java.",
-        "Optimized: existing software systems to improve performance, scalability, and reliability across enterprise applications."
+        "Designed and developed scalable, secure web applications using the ASP.Net framework with C#.",
+        "Managed relational data at scale by building and maintaining MySQL tables, leveraging the JDBC API for backend integration in Java.",
+        "Optimized existing software systems to improve performance, scalability, and reliability across enterprise applications."
       ],
       technologies: ["ASP.Net", "C#", "MySQL", "JDBC", "Java"]
     },
     {
       id: 4,
-      role: "Undergraduate Researcher — DeepLearning and LLMs",
+      role: "Undergraduate Researcher — Deep Learning and LLMs",
       company: "University of Nevada, Las Vegas",
       duration: "August 2024 - Present",
       description: [
-        "Processing: a 10K+ large corpus of Alzheimer's-related literature from PubMed to build a domain-specific dataset for language model training and evaluation.",
-        "Fine-tuning: LLMs for Alzheimer's domain, reducing loss < 0.5 and achieving ≈90% accuracy on downstream biomedical classification tasks.",
-        "Collaborated: with interdisciplinary teams to customize models for domain-specific tasks, contributing to the creation of a $3.2 million dollar Biomarker Observatory for Neurodegenerative Diseases."
+        "Processed a 10K+ large corpus of Alzheimer’s-related literature from PubMed to build a domain-specific dataset for language model training and evaluation.",
+        "Fine-tuned LLMs for the Alzheimer’s domain, reducing loss to less than 0.5 and achieving ≈90% accuracy on downstream biomedical classification tasks.",
+        "Developed a RAG pipeline using Langchain and Pinecone to assist with data labeling tasks.",
+        "Collaborated with interdisciplinary teams to customize models for domain-specific tasks, contributing to the creation of a $3.2 million Biomarker Observatory for Neurodegenerative Diseases."
       ],
-      technologies: ["Python", "PyTorch", "HuggingFace", "NLP", "Deep Learning", "LLMs", "Biomedical NLP"]
-    },
-
+      technologies: ["Python", "PyTorch", "HuggingFace", "LangChain", "Pinecone", "NLP", "Deep Learning", "Biomedical NLP"]
+    }
   ];
+
   
   const education: Education[] = [
     {
