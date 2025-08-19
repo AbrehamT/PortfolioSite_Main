@@ -145,7 +145,7 @@ const Hero = () => {
               Software Engineer
             </h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-              Computer Science student at University of Nevada, Las Vegas with experience in full-stack development, AI/ML, and embedded systems.
+              Computer Science student at University of Nevada, Las Vegas with experience in scientific computing, AI/ML, and full-stack development.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
@@ -209,7 +209,7 @@ const Hero = () => {
             <Mail size={20} />
             <span>Email</span>
           </a>
-          <a href="https://drive.google.com/file/d/1Hqec5zCDocAT5Pu9L-GqKWpOF4E6u69r/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1bneZCYc-lBn-8gBPIBrYTOinuwss2IHL/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
             <FileText size={20} />
             <span>Resume</span>
           </a>
