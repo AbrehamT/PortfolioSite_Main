@@ -85,7 +85,7 @@ const ContactSection = () => {
                 <Linkedin className="text-blue-400 mt-1" size={20} />
                 <div>
                   <p className="font-medium text-gray-300">LinkedIn</p>
-                  <a href="https://www.linkedin.com/in/abreham-t-tadesse-34b78b259/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">linkedin.com/in/abreham-t-tadesse-34b78b259/</a>
+                  <a href="https://www.linkedin.com/in/abrehamt/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">linkedin.com/in/abreham-t-tadesse-34b78b259/</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">

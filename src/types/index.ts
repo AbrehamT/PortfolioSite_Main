@@ -7,6 +7,8 @@ export interface Project {
     github?: string;
     demo?: string;
     image: string;
+    slides?: string;  // Google Slides embed URL
+    pdf?: string;     // PDF embed URL (Google Drive preview or direct PDF)
   }
   
   export interface Experience {

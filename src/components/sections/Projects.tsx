@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, Github, X, ArrowRight } from 'lucide-react';
 // import { Project } from '../../types';
 import { projects } from '../../data/projects';
@@ -116,106 +117,177 @@ const ProjectsSection = () => {
         </div>
       </div>
       
-      {/* Case Study Modal */}
-      {activeProject !== null && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75 backdrop-blur-sm animate-fadeIn"
-          onClick={() => setActiveProject(null)}
-        >
-          <div 
-            className="bg-gray-800 rounded-lg shadow-xl border border-gray-700 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col animate-slideIn"
-            onClick={(e) => e.stopPropagation()}
+      {/* Render Modal via Portal */}
+      {activeProject !== null && (() => {
+        const project = projects.find(p => p.id === activeProject);
+        if (!project) return null;
+        return <CaseStudyModal project={project} onClose={() => setActiveProject(null)} />;
+      })()}
+    </section>
+  );
+};
+
+// Modal Component rendered via Portal
+const CaseStudyModal = ({ 
+  project, 
+  onClose 
+}: { 
+  project: typeof projects[0]; 
+  onClose: () => void;
+}) => {
+  return createPortal(
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+      onClick={onClose}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    >
+      <div 
+        className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal Header */}
+        <div className="flex justify-between items-center p-6 border-b border-gray-100 flex-shrink-0">
+          <h3 className="text-2xl font-semibold text-gray-800">
+            {project.title}
+          </h3>
+          <button 
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
           >
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-700">
-              <h3 className="text-2xl font-bold text-gray-100">
-                {projects.find(p => p.id === activeProject)?.title} - Case Study
-              </h3>
-              <button 
-                onClick={() => setActiveProject(null)}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <X size={24} />
-              </button>
+            <X size={22} />
+          </button>
+        </div>
+        
+        {/* Main Content Area - Different layout for slides (top) vs images/PDF (side) */}
+        <div className={`flex flex-1 overflow-hidden ${project.slides ? 'flex-col' : 'flex-col md:flex-row'}`}>
+          {/* Visual Showcase Section */}
+          <div className={`bg-gray-50 border-gray-100 flex-shrink-0 flex flex-col ${
+            project.slides
+              ? 'w-full border-b' 
+              : 'w-full md:w-1/2 border-b md:border-b-0 md:border-r'
+          }`}>
+            <div className="p-4 pb-2">
+              <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                {project.pdf ? 'Research Paper' : 'Visual Showcase'}
+              </h4>
             </div>
-            
-            {/* Modal Body */}
-            <div className="p-6 overflow-y-auto">
-              <div className="prose max-w-none prose-invert">
-                {projects.find(p => p.id === activeProject)?.caseStudy.split('\n\n').map((paragraph, index) => {
-                  if (paragraph.startsWith('## ')) {
-                    return <h4 key={index} className="text-xl font-semibold mt-6 mb-3 text-gray-100">{paragraph.replace('## ', '')}</h4>;
-                  } else if (paragraph.includes('- **')) {
-                    const items = paragraph.split('\n- ').filter(Boolean);
-                    return (
-                      <ul key={index} className="list-disc list-inside mt-4 mb-4 text-gray-300">
-                        {items.map((item, itemIndex) => {
-                          const boldMatch = item.match(/\*\*(.*?)\*\*/);
-                          if (boldMatch) {
-                            const [fullMatch, boldText] = boldMatch;
-                            return (
-                              <li key={itemIndex} className="mb-2">
-                                <span className="font-semibold text-blue-300">{boldText}:</span>
-                                {item.replace(fullMatch, '')}
-                              </li>
-                            );
-                          }
-                          return <li key={itemIndex} className="mb-2">{item}</li>;
-                        })}
+            <div className={`p-4 pt-2 flex items-center justify-center ${
+              project.slides ? 'h-[500px]' : 'flex-1 min-h-[400px]'
+            }`}>
+              {project.pdf ? (
+                <iframe
+                  src={project.pdf}
+                  className="w-full h-full rounded-lg border border-gray-200"
+                  style={{ minHeight: '500px' }}
+                  allowFullScreen
+                  title={`${project.title} PDF`}
+                />
+              ) : project.slides ? (
+                <div className="w-full h-full relative overflow-hidden rounded-lg">
+                  <iframe
+                    src={(() => {
+                      // If URL already has parameters, use as-is
+                      if (project.slides.includes('?')) {
+                        return project.slides;
+                      }
+                      // Manual navigation mode (no auto-advance)
+                      return `${project.slides}?start=false&loop=false&rm=minimal`;
+                    })()}
+                    className="absolute border-0"
+                    style={{ 
+                      top: '-26px',  // Hide the top toolbar
+                      left: 0,
+                      width: '100%',
+                      height: 'calc(100% + 26px)',
+                    }}
+                    allowFullScreen
+                    title={`${project.title} Slides`}
+                  />
+                </div>
+              ) : project.image && (
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-contain rounded-lg"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        
+          {/* Modal Body - Below for slides/pdf, Right side for images */}
+          <div className="flex-1 p-6 overflow-y-auto bg-white">
+            <div className="max-w-none">
+              {(project.caseStudy || '').split('\n\n').map((paragraph, index) => {
+                // Check if it's a section header (single line, no bullet points, relatively short)
+                const isHeader = !paragraph.includes('•') && 
+                                 !paragraph.includes(':') && 
+                                 paragraph.split('\n').length === 1 && 
+                                 paragraph.length < 80 &&
+                                 paragraph.length > 0;
+                
+                // Check if paragraph contains bullet points
+                const hasBullets = paragraph.includes('•');
+                
+                if (isHeader) {
+                  return (
+                    <h4 key={index} className="text-lg font-semibold mt-6 mb-3 text-gray-800">
+                      {paragraph}
+                    </h4>
+                  );
+                } else if (hasBullets) {
+                  const lines = paragraph.split('\n').filter(line => line.trim());
+                  const headerLine = lines.find(line => !line.startsWith('•'));
+                  const bulletLines = lines.filter(line => line.startsWith('•'));
+                  
+                  return (
+                    <div key={index} className="mb-4">
+                      {headerLine && (
+                        <p className="font-medium text-gray-700 mb-2">{headerLine}</p>
+                      )}
+                      <ul className="space-y-1 text-gray-600">
+                        {bulletLines.map((item, itemIndex) => (
+                          <li key={itemIndex} className="flex items-start">
+                            <span className="mr-2 text-blue-500">•</span>
+                            <span>{item.replace('•', '').trim()}</span>
+                          </li>
+                        ))}
                       </ul>
-                    );
-                  } else if (paragraph.startsWith('1. **')) {
-                    const items = paragraph.split('\n').filter(item => item.trim().length > 0);
-                    const numberedItems = items.filter(item => /^\d+\./.test(item.trim()));
-                    
-                    if (numberedItems.length > 0) {
-                      return (
-                        <ol key={index} className="list-decimal list-inside mt-4 mb-4 text-gray-300">
-                          {numberedItems.map((item, itemIndex) => {
-                            // Extract the number and remove it
-                            const cleanItem = item.replace(/^\d+\.\s*/, '');
-                            const boldMatch = cleanItem.match(/\*\*(.*?)\*\*/);
-                            
-                            if (boldMatch) {
-                              const [fullMatch, boldText] = boldMatch;
-                              return (
-                                <li key={itemIndex} className="mb-2">
-                                  <span className="font-semibold text-blue-300">{boldText}:</span>
-                                  {cleanItem.replace(fullMatch, '')}
-                                </li>
-                              );
-                            }
-                            return <li key={itemIndex} className="mb-2">{cleanItem}</li>;
-                          })}
-                        </ol>
-                      );
-                    }
-                  }
-                  return <p key={index} className="mb-4 text-gray-300">{paragraph}</p>;
-                })}
-              </div>
-            </div>
-            
-            {/* Modal Footer */}
-            <div className="p-6 border-t border-gray-700 flex flex-wrap justify-between items-center">
-              <div className="flex flex-wrap items-center gap-2 mb-4 md:mb-0">
-                {projects.find(p => p.id === activeProject)?.technologies.map((tech, index) => (
-                  <span key={index} className="bg-gray-700 text-blue-300 px-3 py-1 rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <button 
-                onClick={() => setActiveProject(null)}
-                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-md transition-colors"
-              >
-                Close
-              </button>
+                    </div>
+                  );
+                }
+                
+                return (
+                  <p key={index} className="mb-4 text-gray-600 leading-relaxed">
+                    {paragraph}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
-      )}
-    </section>
+        
+        {/* Modal Footer */}
+        <div className="p-6 border-t border-gray-100 flex flex-wrap justify-between items-center flex-shrink-0 bg-gray-50">
+          <div className="flex flex-wrap items-center gap-2 mb-4 md:mb-0">
+            {project.technologies.map((tech, index) => (
+              <span key={index} className="bg-white text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200 font-medium">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <button 
+            onClick={onClose}
+            className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.body
   );
 };
 

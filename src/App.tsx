@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from './components/layout/Header';
-import Hero from './components/sections/Hero';
-import ExperienceSection from './components/sections/Experience';
-import ProjectsSection from './components/sections/Projects';
-import SkillsSection from './components/sections/Skills';
-import ContactSection from './components/sections/Contact';
-import Footer from './components/layout/Footer';
-import SectionTransition from './components/layout/SectionTransition';
+import Header from './Components/layout/Header';
+import Hero from './Components/sections/Hero';
+import ExperienceSection from './Components/sections/Experience';
+import ProjectsSection from './Components/sections/Projects';
+import SkillsSection from './Components/sections/Skills';
+import ContactSection from './Components/sections/Contact';
+import Footer from './Components/layout/Footer';
+import SectionTransition from './Components/layout/SectionTransition';
 import './App.css';
 
 const App = () => {

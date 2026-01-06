@@ -201,7 +201,7 @@ const Hero = () => {
             <Github size={20} />
             <span>GitHub</span>
           </a>
-          <a href="https://www.linkedin.com/in/abreham-t-tadesse-34b78b259/" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
+          <a href="https://www.linkedin.com/in/abrehamt/" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
             <Linkedin size={20} />
             <span>LinkedIn</span>
           </a>
@@ -209,7 +209,7 @@ const Hero = () => {
             <Mail size={20} />
             <span>Email</span>
           </a>
-          <a href="https://drive.google.com/file/d/1bneZCYc-lBn-8gBPIBrYTOinuwss2IHL/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1nyvb8x2oe8ODD-TXsKloQ-hvGZJ5_HQg/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
             <FileText size={20} />
             <span>Resume</span>
           </a>

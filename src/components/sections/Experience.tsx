@@ -20,64 +20,59 @@ const ExperienceSection = () => {
   const experiences: Experience[] = [
     {
       id: 1,
-      role: "Software Engineer Intern",
+      role: "Software Engineer Intern — Embedded & Scientific Programming",
       company: "Nautilus X-Ray",
-      duration: "May 2025 - Present",
+      duration: "May 2025 - Aug 2025",
       description: [
-        "Optimizing image reconstruction and scanner calibration algorithms in Python, applying numerical linear algebra, optimization theory, and signal processing techniques to improve accuracy and speed.",
-        "Developing C++ drivers to control high-precision motion hardware for a novel electron beam CT scanner, gaining hands-on experience with low-level programming and hardware interfaces.",
-        "Analyzing data obtained from CT scanner using Python and generating actionable reports and graphs."
+        "Developed custom non-linear optimization algorithms (Levenberg–Marquardt, gradient-based) to calibrate source and detector positions in a novel CT scanner, improving accuracy of motion capture systems.",
+        "Modeled CT imaging calibration as a non-linear system, reducing model residual error by 30% and improving calibration stability under noise.",
+        "Transformed spatial model parameters into frequency domain, accelerating convergence of numeric optimization and cutting compute time by over 50%.",
+        "Developed C++ drivers & control interfaces for real-time motion control of an 800lbs. plate spinning at over 200 RPM. Ensured motor control safety, latency constraints, and synchronized motion/imaging capture."
       ],
-      technologies: ["Python", "C++", "Signal Processing", "Numerical Linear Algebra", "Optimization"]
+      technologies: ["C++", "Python", "Numerical Optimization", "Signal Processing", "Embedded Systems"]
     },
     {
       id: 2,
-      role: "Software Engineer Intern",
+      role: "Software Engineer — AI/ML & Cloud Systems",
       company: "Haig's Quality Printing",
-      duration: "June 2024 - May 2025",
+      duration: "May 2024 - May 2025",
       description: [
-        "Developed a full-stack Node.js application leveraging Generative AI such as Large Language Models to automate quote generation for large-scale manufacturing jobs, reducing quote turnaround time by 50% and improving customer to client communications.",
+        "Developed & deployed a full-stack application leveraging Generative AI to automate quote generation for large-scale manufacturing jobs, reducing quote turnaround time by 50%.",
+        "Achieved ≈90% classification accuracy by fine-tuning LLMs on company and public data for automated quote generations.",
         "Deployed LLM Agents using Model Context Protocol (MCP) on AWS ECS to simplify the user onboarding process.",
-        "Implemented OAuth2.0 authentication integration with Google and Microsoft, alongside a stateless JWT-based authorization system for secure and scalable access control.",
-        "Architected CI/CD pipelines using Docker, GitHub Actions, and AWS ECS, enabling rapid and reliable production deployments. Improved developer productivity by containerizing micro-services and configuring Nginx for local request routing, enabling immediate testing and faster debugging cycles."
+        "Architected CI/CD pipelines using Docker, GitHub Actions, and AWS ECS — enabling rapid and reliable production deployments."
       ],
-      technologies: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "Git", "AWS", "OAuth2.0", "JWT", "Docker", "Nginx", "MCP"]
+      technologies: ["TypeScript", "Node.js", "AWS ECS", "Docker", "GitHub Actions", "LLMs", "MCP"]
     },
     {
       id: 3,
-      role: "Enterprise Applications Software Engineer",
+      role: "Undergraduate Researcher — Applied AI for Biomedical Systems",
       company: "University of Nevada, Las Vegas",
-      duration: "February 2024 - July 2024",
+      duration: "Aug 2024 - Present",
       description: [
-        "Designed and developed scalable, secure web applications using the ASP.Net framework with C#.",
-        "Managed relational data at scale by building and maintaining MySQL tables, leveraging the JDBC API for backend integration in Java.",
-        "Optimized existing software systems to improve performance, scalability, and reliability across enterprise applications."
+        "Contributed to a $3.2M federally funded Biomarker Observatory by developing scalable data analysis pipelines and tools, supporting interdisciplinary research into Alzheimer's biomarkers.",
+        "Engineered data-generation pipelines utilizing retrieval-augmented generation (RAG) and weak-supervision to curate a large set of annotated data for model training — resulting in a 50% drop in the time required for manual data-labeling.",
+        "Achieved ≈90% classification accuracy on 10,000+ research papers from PubMed Central by fine-tuning Large Language Models for domain adaptation."
       ],
-      technologies: ["ASP.Net", "C#", "MySQL", "JDBC", "Java"]
+      technologies: ["Python", "PyTorch", "HuggingFace", "RAG", "NLP", "Deep Learning", "HPC"]
     },
-    {
-      id: 4,
-      role: "Undergraduate Researcher — Deep Learning and LLMs",
-      company: "University of Nevada, Las Vegas",
-      duration: "August 2024 - Present",
-      description: [
-        "Processed a 10K+ large corpus of Alzheimer’s-related literature from PubMed to build a domain-specific dataset for language model training and evaluation.",
-        "Fine-tuned LLMs for the Alzheimer’s domain, reducing loss to less than 0.5 and achieving ≈90% accuracy on downstream biomedical classification tasks.",
-        "Developed a RAG pipeline using Langchain and Pinecone to assist with data labeling tasks.",
-        "Collaborated with interdisciplinary teams to customize models for domain-specific tasks, contributing to the creation of a $3.2 million Biomarker Observatory for Neurodegenerative Diseases."
-      ],
-      technologies: ["Python", "PyTorch", "HuggingFace", "LangChain", "Pinecone", "NLP", "Deep Learning", "Biomedical NLP"]
-    }
   ];
 
   
   const education: Education[] = [
     {
       id: 1,
-      degree: "Bachelor of Science in Computer Science, Minor in Mathematics",
+      degree: "Master of Science in Computer Science",
       institution: "University of Nevada, Las Vegas",
-      duration: "August 2021 - Present (Graduating December 2025)",
-      description: "Relevant coursework: Data Structures & Algorithms, Software Engineering, Database Systems, Web Development, Operating Systems, Computer Networks, Linear Algebra, Statistics"
+      duration: "Jan 2026 – Present",
+      description: "Graduate studies in Computer Science with focus on AI/ML and systems research."
+    },
+    {
+      id: 2,
+      degree: "Bachelor of Science in Computer Science",
+      institution: "University of Nevada, Las Vegas",
+      duration: "Aug 2021 – Dec 2025",
+      description: "Relevant coursework: Data Structures & Algorithms, Software Engineering, Database Systems, Operating Systems, Computer Networks, Linear Algebra, Statistics"
     }
   ];
 
