@@ -9,6 +9,7 @@ export interface Project {
     image: string;
     slides?: string;  // Google Slides embed URL
     pdf?: string;     // PDF embed URL (Google Drive preview or direct PDF)
+    drawio?: string;  // Draw.io diagram URL (can be published diagram URL, Google Drive link, or direct .drawio file URL)
   }
   
   export interface Experience {

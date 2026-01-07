@@ -6,6 +6,7 @@ export const projects: Project[] = [
     title: "LiteratureAnnotator - LLM-Powered Weak Supervision Pipeline",
     description: "Built an automated annotation pipeline leveraging LLMs and weak supervision techniques to label biomedical literature for Alzheimer's disease research at scale.",
     technologies: ["Python", "LLMs", "Weak Supervision", "Docker", "REST API", "Jupyter", "NLP"],
+    drawio: "https://drive.google.com/file/d/1GrVeZw9d45C7MvAYg0jKVJvOnyOtGbOj/view?usp=sharing",
     caseStudy: `## Project Overview
 
 Developed LiteratureAnnotator, an end-to-end pipeline that combines Large Language Models with weak supervision techniques to automatically annotate biomedical literature related to Alzheimer's disease. This system addresses the critical bottleneck of manual annotation in biomedical NLP research.
@@ -54,7 +55,12 @@ The system consists of several modular components:
 
 This tool significantly accelerates biomedical research by removing the annotation bottleneck, enabling researchers to rapidly build labeled datasets for training specialized NLP models in the Alzheimer's disease domain and beyond.`,
     github: "https://github.com/UNLVCS/LiteratureAnnotator",
-    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
+    // Add your draw.io diagram URL here. Options:
+    // 1. Published diagram URL from diagrams.net
+    // 2. Google Drive link to .drawio file (e.g., "https://drive.google.com/file/d/FILE_ID/view")
+    // 3. Direct URL to .drawio file
+    // drawio: "YOUR_DRAWIO_URL_HERE"
   },
   {
     id: 6,

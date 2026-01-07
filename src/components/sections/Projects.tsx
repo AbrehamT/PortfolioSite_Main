@@ -135,6 +135,9 @@ const CaseStudyModal = ({
   project: typeof projects[0]; 
   onClose: () => void;
 }) => {
+  const [slidesActive, setSlidesActive] = useState(false);
+  const [drawioActive, setDrawioActive] = useState(false);
+  
   return createPortal(
     <div 
       className="fixed inset-0 z-[9999] flex items-center justify-center p-2 md:p-4 bg-black/40 backdrop-blur-sm"
@@ -158,22 +161,24 @@ const CaseStudyModal = ({
           </button>
         </div>
         
-        {/* Main Content Area - Different layout for slides (top) vs images/PDF (side) */}
-        <div className={`flex flex-1 overflow-hidden ${project.slides ? 'flex-col' : 'flex-col md:flex-row'}`}>
+        {/* Main Content Area - Different layout for slides/drawio (top) vs images/PDF (side) */}
+        <div className={`flex flex-1 overflow-hidden ${(project.slides || (project.drawio && project.drawio.trim())) ? 'flex-col' : 'flex-col md:flex-row'}`}>
           {/* Visual Showcase Section - Smaller on mobile */}
           <div className={`bg-gray-50 border-gray-100 flex-shrink-0 flex flex-col ${
-            project.slides
+            (project.slides || (project.drawio && project.drawio.trim()))
               ? 'w-full border-b' 
               : 'w-full md:w-1/2 border-b md:border-b-0 md:border-r'
           }`}>
             <div className="p-2 md:p-4 pb-1 md:pb-2">
               <h4 className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wide">
-                {project.pdf ? 'Research Paper' : 'Visual Showcase'}
+                {project.pdf ? 'Research Paper' : (project.drawio && project.drawio.trim()) ? 'Architecture Diagram' : 'Visual Showcase'}
               </h4>
             </div>
             <div className={`p-2 md:p-4 pt-1 md:pt-2 flex items-center justify-center ${
               project.slides 
-                ? 'h-[180px] md:h-[500px]' 
+                ? 'h-[150px] md:h-[320px]' 
+                : (project.drawio && project.drawio.trim())
+                ? 'h-[180px] md:h-[350px]'
                 : 'h-[150px] md:flex-1 md:min-h-[400px]'
             }`}>
               {project.pdf ? (
@@ -183,6 +188,43 @@ const CaseStudyModal = ({
                   allowFullScreen
                   title={`${project.title} PDF`}
                 />
+              ) : (project.drawio && project.drawio.trim()) ? (
+                <div className="w-full h-full relative overflow-hidden rounded-lg border border-gray-200">
+                  <iframe
+                    src={(() => {
+                      // If it's already a draw.io viewer URL, use as-is
+                      if (project.drawio.includes('viewer.diagrams.net')) {
+                        return project.drawio;
+                      }
+                      // If it's a Google Drive link, convert it
+                      if (project.drawio.includes('drive.google.com')) {
+                        // Extract file ID from Google Drive URL
+                        const fileIdMatch = project.drawio.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        if (fileIdMatch) {
+                          const fileId = fileIdMatch[1];
+                          return `https://viewer.diagrams.net/?highlight=0000ff&edit=_blank&layers=1&nav=1&title=diagram.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D${fileId}`;
+                        }
+                      }
+                      // If it's a direct URL to a .drawio file, use the viewer
+                      return `https://viewer.diagrams.net/?url=${encodeURIComponent(project.drawio)}`;
+                    })()}
+                    className="w-full h-full"
+                    style={{ pointerEvents: drawioActive ? 'auto' : 'none' }}
+                    allowFullScreen
+                    title={`${project.title} Diagram`}
+                  />
+                  {/* Overlay to allow scrolling - click to interact with diagram */}
+                  {!drawioActive && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer flex items-center justify-center bg-black/5 hover:bg-black/10 transition-colors group"
+                      onClick={() => setDrawioActive(true)}
+                    >
+                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-gray-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to interact with diagram
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : project.slides ? (
                 <div className="w-full h-full relative overflow-hidden rounded-lg">
                   <iframe
@@ -200,10 +242,22 @@ const CaseStudyModal = ({
                       left: 0,
                       width: '100%',
                       height: 'calc(100% + 26px)',
+                      pointerEvents: slidesActive ? 'auto' : 'none',
                     }}
                     allowFullScreen
                     title={`${project.title} Slides`}
                   />
+                  {/* Overlay to allow scrolling - click to interact with slides */}
+                  {!slidesActive && (
+                    <div 
+                      className="absolute inset-0 cursor-pointer flex items-center justify-center bg-black/5 hover:bg-black/10 transition-colors group"
+                      onClick={() => setSlidesActive(true)}
+                    >
+                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-gray-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to interact with slides
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : project.image && (
                 <img 
@@ -219,7 +273,13 @@ const CaseStudyModal = ({
           </div>
         
           {/* Modal Body - Below for slides/pdf, Right side for images */}
-          <div className="flex-1 p-3 md:p-6 overflow-y-auto bg-white">
+          <div 
+            className="flex-1 p-3 md:p-6 overflow-y-auto bg-white"
+            onClick={() => {
+              if (slidesActive) setSlidesActive(false);
+              if (drawioActive) setDrawioActive(false);
+            }}
+          >
             <div className="max-w-none">
               {(project.caseStudy || '').split('\n\n').map((paragraph, index) => {
                 // Check if it's a section header (single line, no bullet points, relatively short)
