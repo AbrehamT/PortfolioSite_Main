@@ -137,48 +137,49 @@ const CaseStudyModal = ({
 }) => {
   return createPortal(
     <div 
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-2 md:p-4 bg-black/40 backdrop-blur-sm"
       onClick={onClose}
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
       <div 
-        className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col"
+        className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-100 flex-shrink-0">
-          <h3 className="text-2xl font-semibold text-gray-800">
+        {/* Modal Header - Compact on mobile */}
+        <div className="flex justify-between items-start gap-2 p-3 md:p-6 border-b border-gray-100 flex-shrink-0">
+          <h3 className="text-base md:text-2xl font-semibold text-gray-800 leading-tight">
             {project.title}
           </h3>
           <button 
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
+            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100 flex-shrink-0"
           >
-            <X size={22} />
+            <X size={20} className="md:w-[22px] md:h-[22px]" />
           </button>
         </div>
         
         {/* Main Content Area - Different layout for slides (top) vs images/PDF (side) */}
         <div className={`flex flex-1 overflow-hidden ${project.slides ? 'flex-col' : 'flex-col md:flex-row'}`}>
-          {/* Visual Showcase Section */}
+          {/* Visual Showcase Section - Smaller on mobile */}
           <div className={`bg-gray-50 border-gray-100 flex-shrink-0 flex flex-col ${
             project.slides
               ? 'w-full border-b' 
               : 'w-full md:w-1/2 border-b md:border-b-0 md:border-r'
           }`}>
-            <div className="p-4 pb-2">
-              <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+            <div className="p-2 md:p-4 pb-1 md:pb-2">
+              <h4 className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wide">
                 {project.pdf ? 'Research Paper' : 'Visual Showcase'}
               </h4>
             </div>
-            <div className={`p-4 pt-2 flex items-center justify-center ${
-              project.slides ? 'h-[500px]' : 'flex-1 min-h-[400px]'
+            <div className={`p-2 md:p-4 pt-1 md:pt-2 flex items-center justify-center ${
+              project.slides 
+                ? 'h-[180px] md:h-[500px]' 
+                : 'h-[150px] md:flex-1 md:min-h-[400px]'
             }`}>
               {project.pdf ? (
                 <iframe
                   src={project.pdf}
                   className="w-full h-full rounded-lg border border-gray-200"
-                  style={{ minHeight: '500px' }}
                   allowFullScreen
                   title={`${project.title} PDF`}
                 />
@@ -218,7 +219,7 @@ const CaseStudyModal = ({
           </div>
         
           {/* Modal Body - Below for slides/pdf, Right side for images */}
-          <div className="flex-1 p-6 overflow-y-auto bg-white">
+          <div className="flex-1 p-3 md:p-6 overflow-y-auto bg-white">
             <div className="max-w-none">
               {(project.caseStudy || '').split('\n\n').map((paragraph, index) => {
                 // Check if it's a section header (single line, no bullet points, relatively short)
@@ -233,7 +234,7 @@ const CaseStudyModal = ({
                 
                 if (isHeader) {
                   return (
-                    <h4 key={index} className="text-lg font-semibold mt-6 mb-3 text-gray-800">
+                    <h4 key={index} className="text-base md:text-lg font-semibold mt-4 md:mt-6 mb-2 md:mb-3 text-gray-800">
                       {paragraph}
                     </h4>
                   );
@@ -243,11 +244,11 @@ const CaseStudyModal = ({
                   const bulletLines = lines.filter(line => line.startsWith('•'));
                   
                   return (
-                    <div key={index} className="mb-4">
+                    <div key={index} className="mb-3 md:mb-4">
                       {headerLine && (
-                        <p className="font-medium text-gray-700 mb-2">{headerLine}</p>
+                        <p className="font-medium text-gray-700 mb-1.5 md:mb-2 text-sm md:text-base">{headerLine}</p>
                       )}
-                      <ul className="space-y-1 text-gray-600">
+                      <ul className="space-y-1 text-gray-600 text-sm md:text-base">
                         {bulletLines.map((item, itemIndex) => (
                           <li key={itemIndex} className="flex items-start">
                             <span className="mr-2 text-blue-500">•</span>
@@ -260,7 +261,7 @@ const CaseStudyModal = ({
                 }
                 
                 return (
-                  <p key={index} className="mb-4 text-gray-600 leading-relaxed">
+                  <p key={index} className="mb-3 md:mb-4 text-gray-600 leading-relaxed text-sm md:text-base">
                     {paragraph}
                   </p>
                 );
@@ -269,18 +270,29 @@ const CaseStudyModal = ({
           </div>
         </div>
         
-        {/* Modal Footer */}
-        <div className="p-6 border-t border-gray-100 flex flex-wrap justify-between items-center flex-shrink-0 bg-gray-50">
-          <div className="flex flex-wrap items-center gap-2 mb-4 md:mb-0">
+        {/* Modal Footer - Compact on mobile, hide tech tags on small screens */}
+        <div className="p-3 md:p-6 border-t border-gray-100 flex justify-between items-center flex-shrink-0 bg-gray-50 gap-3">
+          <div className="hidden md:flex flex-wrap items-center gap-2">
             {project.technologies.map((tech, index) => (
               <span key={index} className="bg-white text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200 font-medium">
                 {tech}
               </span>
             ))}
           </div>
+          {/* Mobile: Show only first 3 tags in a compact format */}
+          <div className="flex md:hidden flex-wrap items-center gap-1.5 flex-1 overflow-hidden">
+            {project.technologies.slice(0, 3).map((tech, index) => (
+              <span key={index} className="bg-white text-gray-600 px-2 py-0.5 rounded-full text-xs border border-gray-200">
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 3 && (
+              <span className="text-gray-400 text-xs">+{project.technologies.length - 3}</span>
+            )}
+          </div>
           <button 
             onClick={onClose}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2 rounded-lg transition-colors font-medium"
+            className="bg-gray-900 hover:bg-gray-800 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-lg transition-colors font-medium text-sm md:text-base flex-shrink-0"
           >
             Close
           </button>
