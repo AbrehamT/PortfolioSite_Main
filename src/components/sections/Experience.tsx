@@ -19,10 +19,36 @@ interface Education {
 const ExperienceSection = () => {
   const experiences: Experience[] = [
     {
+      id: 5,
+      role: "HPC / ML Infrastructure Engineer — Distributed Systems & Research Computing",
+      company: "University of Nevada, Las Vegas",
+      duration: "May 2024 - Present",
+      description: [
+        "Engineered multi-GPU training workflows using SLURM, PyTorch Distributed (DDP), and DeepSpeed across A100-class hardware; optimized job scheduling, memory allocation, and GPU utilization for large transformer models.",
+        "Designed cluster-level resource management strategies including job queue policies, environment isolation, and CUDA memory tuning to reduce fragmentation and improve training stability for high-memory workloads.",
+        "Developed reproducible HPC environments by containerizing ML pipelines with Docker and configuring Linux-based compute nodes for scalable research deployments.",
+        "Supported interdisciplinary research teams by debugging distributed training failures, optimizing batch sizing and gradient accumulation strategies, and improving throughput for large-scale model experimentation."
+      ],
+      technologies: ["Python", "PyTorch", "SLURM", "DeepSpeed", "Docker", "Linux", "HPC", "CUDA"]
+    },
+    {
+      id: 6,
+      role: "Robotics Engineer — Perception & Planning",
+      company: "Neuramate",
+      duration: "May 2024 - Present",
+      description: [
+        "Founded and architected Neuramate's robotics AI stack, building an end-to-end system to capture operator demonstrations and convert human intent into structured robot action policies.",
+        "Designed data pipelines for embodiment transfer, transforming egocentric video demonstrations into robot-compatible trajectories for humanoid and manipulator platforms.",
+        "Developed large-scale simulation and synthetic data workflows using Isaac Sim and GPU-accelerated training pipelines to generate robotic training data and accelerate policy learning.",
+        "Integrated imitation learning, diffusion-based action modeling, and residual reinforcement learning to enable robust skill acquisition and rapid policy iteration across multiple robotic form factors."
+      ],
+      technologies: ["Python", "PyTorch", "Isaac Sim", "ROS2", "Imitation Learning", "Diffusion Models", "Reinforcement Learning"]
+    },
+    {
       id: 1,
       role: "Software Engineer Intern — Embedded & Scientific Programming",
       company: "Nautilus X-Ray",
-      duration: "May 2025 - Aug 2025",
+      duration: "May 2025 - Present",
       description: [
         "Developed custom non-linear optimization algorithms (Levenberg–Marquardt, gradient-based) to calibrate source and detector positions in a novel CT scanner, improving accuracy of motion capture systems.",
         "Modeled CT imaging calibration as a non-linear system, reducing model residual error by 30% and improving calibration stability under noise.",

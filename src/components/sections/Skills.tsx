@@ -9,23 +9,27 @@ const SkillsSection = () => {
   const skills: Skill[] = [
     {
       category: "Programming Languages",
-      items: ["Python", "TypeScript/JavaScript", "C/C++", "SQL"]
+      items: ["Python", "C/C++", "TypeScript/JavaScript", "Matlab", "SQL"]
     },
     {
-      category: "Frameworks & Libraries",
-      items: ["React", "Node.js", "PyTorch", "HuggingFace", "Express", "TensorFlow"]
+      category: "HPC & Systems",
+      items: ["Linux", "SLURM", "CUDA", "HPC Workflows", "Docker", "Distributed Systems"]
+    },
+    {
+      category: "ML Frameworks",
+      items: ["PyTorch", "DeepSpeed", "NumPy", "SciPy", "HuggingFace", "TensorFlow"]
+    },
+    {
+      category: "Robotics & Simulation",
+      items: ["ROS2", "Isaac Sim", "Imitation Learning", "Diffusion Models", "SLAM", "LiDAR"]
+    },
+    {
+      category: "AI / ML",
+      items: ["LLMs", "RAG", "Weak Supervision", "Domain Adaptation", "NLP", "Reinforcement Learning"]
     },
     {
       category: "Cloud & DevOps",
-      items: ["AWS", "Git", "GitHub Actions", "Docker", "CI/CD", "JWT"]
-    },
-    {
-      category: "Databases",
-      items: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"]
-    },
-    {
-      category: "Machine Learning",
-      items: ["Deep Learning", "LLMs", "Computer Vision", "NLP", "Data Analysis"]
+      items: ["AWS ECS", "GitHub Actions", "CI/CD", "Docker", "PostgreSQL", "MongoDB"]
     }
   ];
 
