@@ -1,96 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail, FileText } from 'lucide-react';
-
-// Particle animation function
-const initParticles = (canvas: HTMLCanvasElement) => {
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  // Match canvas dimensions to parent element
-  const resizeCanvas = () => {
-    const parent = canvas.parentElement;
-    if (parent) {
-      canvas.width = parent.offsetWidth;
-      canvas.height = parent.offsetHeight;
-    }
-  };
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  // Particle properties
-  const particles: {
-    x: number;
-    y: number;
-    radius: number;
-    color: string;
-    speedX: number;
-    speedY: number;
-    opacity: number;
-  }[] = [];
-
-  // Color palette matching your theme
-  const colors = [
-    'rgba(155, 178, 216, 0.6)',  // primary/blue-500
-    'rgba(37, 99, 235, 0.6)',   // primary-dark/blue-600
-    'rgba(79, 70, 229, 0.5)',   // indigo-600
-    'rgba(99, 102, 241, 0.4)',  // indigo-500
-  ];
-
-  // Create particles
-  const createParticles = () => {
-    const particleCount = Math.floor(canvas.width * canvas.height / 15000);
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        speedX: Math.random() * 0.3 - 0.15,
-        speedY: Math.random() * 0.3 - 0.15,
-        opacity: Math.random() * 0.5 + 0.2
-      });
-    }
-  };
-
-  createParticles();
-
-  // Animation loop
-  const animate = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw and update each particle
-    particles.forEach(particle => {
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      ctx.fillStyle = particle.color;
-      ctx.fill();
-      
-      // Move particles
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > canvas.width) {
-        particle.speedX = -particle.speedX;
-      }
-      if (particle.y < 0 || particle.y > canvas.height) {
-        particle.speedY = -particle.speedY;
-      }
-    });
-    
-    requestAnimationFrame(animate);
-  };
-  
-  animate();
-
-  // Clean up function
-  return () => {
-    window.removeEventListener('resize', resizeCanvas);
-  };
-};
-
+import React from 'react';
+import { Github, Linkedin, Mail, FileText, ArrowUpRight, ArrowRight } from 'lucide-react';
+import Sonar, { SonarDot } from '../../ui/Sonar';
 
 // const PinterestEmbed = () => {
 //   return (
@@ -107,68 +17,64 @@ const initParticles = (canvas: HTMLCanvasElement) => {
 //   );
 // };
 
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com/AbrehamT', icon: Github, external: true },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/abrehamt/', icon: Linkedin, external: true },
+  { name: 'Email', href: 'mailto:abrehamtadesse95@gmail.com', icon: Mail, external: false },
+  { name: 'Resume', href: 'https://drive.google.com/file/d/1nyvb8x2oe8ODD-TXsKloQ-hvGZJ5_HQg/view?usp=sharing', icon: FileText, external: true },
+];
 
 const Hero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      const cleanup = initParticles(canvasRef.current);
-      return cleanup;
-    }
-  }, []);
-
-  
   return (
-    <section 
-      id="home" 
-      className="relative pt-24 md:pt-32 pb-0"
-      style={{ 
-        background: 'var(--hero-bg)',
-        position: 'relative',
-        zIndex: 0
-      }}
-    >
-      {/* Particle animation canvas */}
-      <canvas 
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full z-0"
-      />
+    <section id="home" className="relative pt-28 md:pt-36">
+      <div className="container relative">
+        {/* Eyebrow */}
+        <div className="flex items-center justify-between border-t border-hairline pt-4">
+          <p className="label text-muted">
+            <span className="text-accent">00</span>
+            <span className="mx-2 text-muted/60">/</span>
+            Portfolio
+          </p>
+          <span aria-hidden="true" className="label text-muted">&darr;</span>
+        </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-100">
-              <span className="text-blue-400">Abreham Tadesse</span>
-            </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">
+        {/* Name */}
+        <h1 className="display mt-10 text-[clamp(4.25rem,22vw,8.5rem)] text-ink md:mt-14 lg:text-[min(12.5vw,10.5rem)]">
+          <span className="block lg:inline">Abreham</span>{' '}
+          <span className="block lg:inline">Tadesse</span>
+        </h1>
+
+        <div className="mt-12 grid grid-cols-1 items-center gap-14 md:mt-16 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-7">
+            <h2 className="label flex items-center gap-3 text-ink">
+              <SonarDot />
               Software Engineer
             </h2>
-            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+            <p className="voice mt-6 text-[1.85rem] leading-[1.2] text-ink md:text-[2.4rem]">
               Computer Science student at University of Nevada, Las Vegas with experience in scientific computing, AI/ML, and full-stack development.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a 
-                href="#contact" 
-                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-md font-medium transition-colors"
-              >
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href="#contact" className="btn btn-accent">
                 Get in Touch
+                <ArrowRight size={16} aria-hidden="true" />
               </a>
-              <a 
-                href="#projects" 
-                className="border border-blue-500 text-blue-400 hover:bg-gray-800 px-6 py-3 rounded-md font-medium transition-colors"
-              >
+              <a href="#projects" className="btn btn-ghost">
                 View Projects
               </a>
             </div>
           </div>
-          <div className="md:w-1/2 flex flex-col items-center gap-6">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600">
-              <img 
-                src="/images/Me.png" 
-                alt="Abreham Tadesse" 
-                className="w-full h-full object-cover"
-              />
+
+          <div className="flex justify-center md:col-span-5 md:justify-end">
+            <div className="relative aspect-square w-full max-w-[260px] sm:max-w-[300px] md:max-w-[360px]">
+              {/* Sonar rings behind the portrait */}
+              <Sonar rings={4} pulse className="absolute -inset-[18%]" />
+              <div className="absolute inset-[6%] overflow-hidden rounded-full border border-hairline bg-paper">
+                <img
+                  src="/images/Me.png"
+                  alt="Abreham Tadesse"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
 
             {/* Pinterest Embed */}
@@ -195,28 +101,37 @@ const Hero = () => {
           </div> */}
           </div>
         </div>
-        
-        <div className="mt-16 md:mt-24 flex flex-wrap justify-center gap-8">
-          <a href="https://github.com/AbrehamT" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
-            <Github size={20} />
-            <span>GitHub</span>
-          </a>
-          <a href="https://www.linkedin.com/in/abrehamt/" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
-            <Linkedin size={20} />
-            <span>LinkedIn</span>
-          </a>
-          <a href="mailto:abrehamtadesse95@gmail.com" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
-            <Mail size={20} />
-            <span>Email</span>
-          </a>
-          <a href="https://drive.google.com/file/d/1nyvb8x2oe8ODD-TXsKloQ-hvGZJ5_HQg/view?usp=sharing" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-2">
-            <FileText size={20} />
-            <span>Resume</span>
-          </a>
-        </div>
+
+        {/* Social links */}
+        <ul className="mt-20 grid grid-cols-2 border-t border-hairline md:mt-28 md:grid-cols-4">
+          {socialLinks.map(({ name, href, icon: Icon, external }, i) => (
+            <li
+              key={name}
+              className={`border-b border-hairline ${i % 2 === 0 ? 'border-r' : ''} md:border-r ${
+                i === socialLinks.length - 1 ? 'md:border-r-0' : ''
+              }`}
+            >
+              <a
+                href={href}
+                {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                className="label group flex min-h-[64px] items-center justify-between gap-3 px-3 text-ink hover:text-accent md:px-5"
+              >
+                <span className="flex items-center gap-3">
+                  <Icon size={18} aria-hidden="true" />
+                  {name}
+                </span>
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden="true"
+                  className="text-muted transition-transform group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
 };
 
-export default Hero; 
+export default Hero;

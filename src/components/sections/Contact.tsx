@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
-import { Mail, Linkedin, Github, Phone, Globe } from 'lucide-react';
+import { Mail, Linkedin, Github, Phone, Globe, ArrowRight } from 'lucide-react';
+import SectionHeading from '../../ui/SectionHeading';
 
 
 const ContactSection = () => {
@@ -47,110 +48,104 @@ const ContactSection = () => {
       });
     }
   };
+  const contactItems = [
+    { label: 'Email', icon: Mail, href: 'mailto:abrehamtadesse95@gmail.com', text: 'abrehamtadesse95@gmail.com', external: false },
+    { label: 'Mobile', icon: Phone, href: 'tel:+17028013039', text: '+1-702-801-3039', external: false },
+    { label: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/abrehamt/', text: 'linkedin.com/in/abreham-t-tadesse-34b78b259/', external: true },
+    { label: 'GitHub', icon: Github, href: 'https://github.com/AbrehamT', text: 'github.com/AbrehamT', external: true },
+    { label: 'Website', icon: Globe, href: 'http://www.abrehamtadesse.com', text: 'www.abrehamtadesse.com', external: true },
+  ];
+
+  const inputClass =
+    'block w-full min-h-[48px] rounded-chip border border-hairline bg-bone px-4 py-3 text-base text-ink placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25';
+
   return (
-    <section 
-      id="contact" 
-      className="py-16 md:py-24" 
-      style={{ 
-        background: 'var(--contact-bg)',
-        position: 'relative',
-        zIndex: 0
-      }}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-gray-100">Get In Touch</h2>
-        <p className="text-gray-400 text-center mb-12">Interested in working together? Let's connect!</p>
-        
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact Info section - unchanged */}
-          <div className="bg-gray-800 rounded-lg p-6 shadow-md border border-gray-700">
-            <h3 className="text-xl font-semibold mb-4 text-gray-100">Contact Information</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="text-blue-400 mt-1" size={20} />
-                <div>
-                  <p className="font-medium text-gray-300">Email</p>
-                  <a href="mailto:abrehamtadesse95@gmail.com" className="text-blue-400 hover:underline">abrehamtadesse95@gmail.com</a>
-                </div>
-              </div>
-              {/* Other contact info items - unchanged */}
-              <div className="flex items-start gap-3">
-                <Phone className="text-blue-400 mt-1" size={20} />
-                <div>
-                  <p className="font-medium text-gray-300">Mobile</p>
-                  <a href="tel:+17028013039" className="text-blue-400 hover:underline">+1-702-801-3039</a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Linkedin className="text-blue-400 mt-1" size={20} />
-                <div>
-                  <p className="font-medium text-gray-300">LinkedIn</p>
-                  <a href="https://www.linkedin.com/in/abrehamt/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">linkedin.com/in/abreham-t-tadesse-34b78b259/</a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Github className="text-blue-400 mt-1" size={20} />
-                <div>
-                  <p className="font-medium text-gray-300">GitHub</p>
-                  <a href="https://github.com/AbrehamT" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">github.com/AbrehamT</a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Globe className="text-blue-400 mt-1" size={20} />
-                <div>
-                  <p className="font-medium text-gray-300">Website</p>
-                  <a href="http://www.abrehamtadesse.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">www.abrehamtadesse.com</a>
-                </div>
-              </div>
-            </div>
+    <section id="contact" className="pb-24 pt-24 md:pb-36 md:pt-36">
+      <div className="container">
+        <SectionHeading
+          number="04"
+          label="Contact"
+          title="Get In Touch"
+          subtitle="Interested in working together? Let's connect!"
+        />
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
+          {/* Contact Info */}
+          <div className="md:col-span-5">
+            <h3 className="label mb-2 text-muted">Contact Information</h3>
+            <ul>
+              {contactItems.map(({ label, icon: Icon, href, text, external }) => (
+                <li key={label} className="border-t border-hairline last:border-b">
+                  <a
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    className="group flex min-h-[64px] items-center gap-4 py-3"
+                  >
+                    <Icon className="flex-shrink-0 text-muted group-hover:text-accent" size={18} aria-hidden="true" />
+                    <span className="min-w-0">
+                      <span className="label block text-muted">{label}</span>
+                      <span className="block text-ink [overflow-wrap:anywhere] group-hover:text-accent">{text}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          
-          {/* Form section - updated */}
-          <div className="bg-gray-800 rounded-lg p-6 shadow-md border border-gray-700">
-            <h3 className="text-xl font-semibold mb-4 text-gray-100">Send a Message</h3>
-            <form className="space-y-4" onSubmit={handleSubmit}>
+
+          {/* Form */}
+          <div className="rounded-card border border-hairline bg-paper p-5 md:col-span-7 md:p-8">
+            <h3 className="display text-[2.25rem] text-ink">Send a Message</h3>
+            <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
+                <label htmlFor="name" className="label mb-2 block text-muted">Name</label>
+                <input
+                  type="text"
+                  id="name"
                   name="name"
-                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
+                  autoComplete="name"
+                  className={inputClass}
                   placeholder="Your Name"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
+                <label htmlFor="email" className="label mb-2 block text-muted">Email</label>
+                <input
+                  type="email"
+                  id="email"
                   name="email"
-                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
+                  autoComplete="email"
+                  className={inputClass}
                   placeholder="your.email@example.com"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                <textarea 
-                  id="message" 
+                <label htmlFor="message" className="label mb-2 block text-muted">Message</label>
+                <textarea
+                  id="message"
                   name="message"
-                  rows={4}
-                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100"
+                  rows={5}
+                  className={`${inputClass} resize-y`}
                   placeholder="Your message here..."
                   required
                 />
               </div>
-              <button 
-                type="submit" 
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-medium transition-colors"
+              <button
+                type="submit"
+                className="btn btn-accent w-full disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={status.submitted && !status.success}
               >
                 {status.submitted && !status.success ? 'Sending...' : 'Send Message'}
+                <ArrowRight size={16} aria-hidden="true" />
               </button>
               {status.message && (
-                <p className={`mt-2 text-center ${status.success ? 'text-green-400' : 'text-red-400'}`}>
+                <p
+                  role="status"
+                  className={`label text-center ${
+                    status.success ? 'text-accent' : status.message === 'Sending...' ? 'text-muted' : 'text-danger'
+                  }`}
+                >
                   {status.message}
                 </p>
               )}

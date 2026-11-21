@@ -3,10 +3,11 @@ import { createPortal } from 'react-dom';
 import { ExternalLink, Github, X, ArrowRight } from 'lucide-react';
 // import { Project } from '../../types';
 import { projects } from '../../data/projects';
+import SectionHeading from '../../ui/SectionHeading';
 
 const ProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
-  
+
   // Add event listener to close modal on escape key
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
@@ -14,109 +15,109 @@ const ProjectsSection = () => {
         setActiveProject(null);
       }
     };
-    
+
     window.addEventListener('keydown', handleEsc);
-    
+
     // Prevent scrolling when modal is open
     if (activeProject !== null) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
-    
+
     return () => {
       window.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     };
   }, [activeProject]);
-  
+
   return (
-    <section 
-      id="projects" 
-      className="py-16 md:py-24" 
-      style={{ 
-        background: 'var(--section-bg-2)',
-        position: 'relative',
-        zIndex: 0,
-        paddingBottom: '2rem'
-      }}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-gray-100">Projects</h2>
-        <p className="text-gray-400 text-center mb-12">A showcase of my technical work and case studies</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div 
-              key={project.id} 
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-700 cursor-pointer group hover:border-blue-500"
+    <section id="projects" className="pb-8 pt-24 md:pt-36">
+      <div className="container">
+        <SectionHeading
+          number="02"
+          title="Projects"
+          subtitle="A showcase of my technical work and case studies"
+        />
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <article
+              key={project.id}
+              className="group flex cursor-pointer flex-col overflow-hidden rounded-card border border-hairline bg-paper transition-colors hover:border-ink"
               onClick={() => setActiveProject(project.id)}
             >
-              <div className="relative">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-hairline bg-bone">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                <span className="label absolute left-3 top-3 rounded-chip bg-paper/90 px-2 py-1 text-ink">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-gray-100">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-1 flex-col p-5 md:p-6">
+                <h3 className="display text-[1.9rem] text-ink">{project.title}</h3>
+                <p className="mt-4 leading-relaxed text-ink-2">{project.description}</p>
+                <div className="mb-6 mt-5 flex flex-wrap gap-2">
                   {project.technologies.slice(0, 3).map((tech, index) => (
-                    <span key={index} className="bg-gray-700 text-blue-300 px-2 py-1 rounded-full text-xs">
+                    <span key={index} className="chip">
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs">
+                    <span className="chip text-muted">
                       +{project.technologies.length - 3} more
                     </span>
                   )}
                 </div>
-                <div className="flex justify-between items-center">
-                  <button 
-                    className="text-blue-400 hover:text-blue-300 font-medium flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1"
+                <div className="mt-auto flex items-center justify-between gap-3 border-t border-hairline pt-3">
+                  <button
+                    type="button"
+                    className="label -ml-1 flex min-h-[44px] items-center gap-2 px-1 text-accent hover:text-accent-hover"
                     onClick={(e) => {
                       e.stopPropagation();
                       setActiveProject(project.id);
                     }}
                   >
-                    <span className="font-semibold">View Case Study</span>
-                    <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    View Case Study
+                    <ArrowRight size={16} aria-hidden="true" className="transition-transform motion-safe:group-hover:translate-x-1" />
                   </button>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
                     {project.github && (
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
+                      <a
+                        href={project.github}
+                        target="_blank"
                         rel="noreferrer"
-                        className="text-gray-400 hover:text-blue-400 transition-colors"
+                        aria-label={`${project.title} on GitHub`}
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-chip text-muted hover:text-accent"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <Github size={20} />
+                        <Github size={20} aria-hidden="true" />
                       </a>
                     )}
                     {project.demo && (
-                      <a 
-                        href={project.demo} 
-                        target="_blank" 
+                      <a
+                        href={project.demo}
+                        target="_blank"
                         rel="noreferrer"
-                        className="text-gray-400 hover:text-blue-400 transition-colors"
+                        aria-label={`${project.title} demo`}
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-chip text-muted hover:text-accent"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={20} aria-hidden="true" />
                       </a>
                     )}
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
-      
+
       {/* Render Modal via Portal */}
       {activeProject !== null && (() => {
         const project = projects.find(p => p.id === activeProject);
@@ -127,117 +128,142 @@ const ProjectsSection = () => {
   );
 };
 
+// Render **bold** spans inside case-study text
+const renderInline = (text: string) =>
+  text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith('**') && part.endsWith('**') ? (
+      <strong key={i} className="font-semibold text-ink">{part.slice(2, -2)}</strong>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+
+const bulletRe = /^\s*(?:•|-)\s+/;
+const numberRe = /^\s*(\d+)\.\s+/;
+
 // Modal Component rendered via Portal
-const CaseStudyModal = ({ 
-  project, 
-  onClose 
-}: { 
-  project: typeof projects[0]; 
+const CaseStudyModal = ({
+  project,
+  onClose
+}: {
+  project: typeof projects[0];
   onClose: () => void;
 }) => {
   const [slidesActive, setSlidesActive] = useState(false);
   const [drawioActive, setDrawioActive] = useState(false);
-  
+
+  const hasDrawio = !!(project.drawio && project.drawio.trim());
+  const interactHint =
+    'label rounded-chip border border-hairline bg-paper/95 px-3 py-2 text-ink opacity-0 transition-opacity group-hover:opacity-100';
+
   return createPortal(
-    <div 
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-2 md:p-4 bg-black/40 backdrop-blur-sm"
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-ink/50 p-2 backdrop-blur-sm animate-fadeIn md:p-4"
       onClick={onClose}
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
-      <div 
-        className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col"
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="case-study-title"
+        className="flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-card border border-hairline bg-paper text-ink animate-slideIn md:max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header - Compact on mobile */}
-        <div className="flex justify-between items-start gap-2 p-3 md:p-6 border-b border-gray-100 flex-shrink-0">
-          <h3 className="text-base md:text-2xl font-semibold text-gray-800 leading-tight">
-            {project.title}
-          </h3>
-          <button 
+        {/* Modal Header */}
+        <div className="flex flex-shrink-0 items-start justify-between gap-3 border-b border-hairline px-4 py-3 md:px-6 md:py-5">
+          <div className="min-w-0">
+            <p className="label text-accent">Case Study</p>
+            <h3 id="case-study-title" className="display mt-1.5 text-[1.6rem] text-ink md:text-[2.5rem]">
+              {project.title}
+            </h3>
+          </div>
+          <button
+            type="button"
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100 flex-shrink-0"
+            aria-label="Close case study"
+            className="-mr-2 inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-chip text-muted transition-colors hover:bg-bone hover:text-ink"
           >
-            <X size={20} className="md:w-[22px] md:h-[22px]" />
+            <X size={22} />
           </button>
         </div>
-        
+
         {/* Main Content Area - Different layout for slides/drawio (top) vs images/PDF (side) */}
-        <div className={`flex flex-1 overflow-hidden ${(project.slides || (project.drawio && project.drawio.trim())) ? 'flex-col' : 'flex-col md:flex-row'}`}>
-          {/* Visual Showcase Section - Smaller on mobile */}
-          <div className={`bg-gray-50 border-gray-100 flex-shrink-0 flex flex-col ${
-            (project.slides || (project.drawio && project.drawio.trim()))
-              ? 'w-full border-b' 
-              : 'w-full md:w-1/2 border-b md:border-b-0 md:border-r'
+        <div className={`flex flex-1 overflow-hidden ${(project.slides || hasDrawio) ? 'flex-col' : 'flex-col md:flex-row'}`}>
+          {/* Visual Showcase Section */}
+          <div className={`flex flex-shrink-0 flex-col border-hairline bg-bone ${
+            (project.slides || hasDrawio)
+              ? 'w-full border-b'
+              : 'w-full border-b md:w-1/2 md:border-b-0 md:border-r'
           }`}>
-            <div className="p-2 md:p-4 pb-1 md:pb-2">
-              <h4 className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wide">
-                {project.pdf ? 'Research Paper' : (project.drawio && project.drawio.trim()) ? 'Architecture Diagram' : 'Visual Showcase'}
+            <div className="px-3 pb-1 pt-3 md:px-5 md:pb-2 md:pt-4">
+              <h4 className="label text-muted">
+                {project.pdf ? 'Research Paper' : hasDrawio ? 'Architecture Diagram' : 'Visual Showcase'}
               </h4>
             </div>
-            <div className={`p-2 md:p-4 pt-1 md:pt-2 flex items-center justify-center ${
-              project.slides 
-                ? 'h-[150px] md:h-[320px]' 
-                : (project.drawio && project.drawio.trim())
-                ? 'h-[180px] md:h-[350px]'
-                : 'h-[150px] md:flex-1 md:min-h-[400px]'
+            <div className={`flex items-center justify-center p-2 pt-1 md:p-5 md:pt-2 ${
+              project.slides
+                ? 'h-[180px] md:h-[320px]'
+                : hasDrawio
+                ? 'h-[200px] md:h-[350px]'
+                : 'h-[170px] md:min-h-[400px] md:flex-1'
             }`}>
               {project.pdf ? (
                 <iframe
                   src={project.pdf}
-                  className="w-full h-full rounded-lg border border-gray-200"
+                  className="h-full w-full rounded-chip border border-hairline bg-paper"
                   allowFullScreen
                   title={`${project.title} PDF`}
                 />
-              ) : (project.drawio && project.drawio.trim()) ? (
-                <div className="w-full h-full relative overflow-hidden rounded-lg border border-gray-200">
+              ) : hasDrawio && project.drawio ? (
+                <div className="relative h-full w-full overflow-hidden rounded-chip border border-hairline bg-white">
                   <iframe
                     src={(() => {
+                      const drawio = project.drawio as string;
                       // If it's already a draw.io viewer URL, use as-is
-                      if (project.drawio.includes('viewer.diagrams.net')) {
-                        return project.drawio;
+                      if (drawio.includes('viewer.diagrams.net')) {
+                        return drawio;
                       }
                       // If it's a Google Drive link, convert it
-                      if (project.drawio.includes('drive.google.com')) {
+                      if (drawio.includes('drive.google.com')) {
                         // Extract file ID from Google Drive URL
-                        const fileIdMatch = project.drawio.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        const fileIdMatch = drawio.match(/\/d\/([a-zA-Z0-9_-]+)/);
                         if (fileIdMatch) {
                           const fileId = fileIdMatch[1];
                           return `https://viewer.diagrams.net/?highlight=0000ff&edit=_blank&layers=1&nav=1&title=diagram.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D${fileId}`;
                         }
                       }
                       // If it's a direct URL to a .drawio file, use the viewer
-                      return `https://viewer.diagrams.net/?url=${encodeURIComponent(project.drawio)}`;
+                      return `https://viewer.diagrams.net/?url=${encodeURIComponent(drawio)}`;
                     })()}
-                    className="w-full h-full"
+                    className="h-full w-full"
                     style={{ pointerEvents: drawioActive ? 'auto' : 'none' }}
                     allowFullScreen
                     title={`${project.title} Diagram`}
                   />
                   {/* Overlay to allow scrolling - click to interact with diagram */}
                   {!drawioActive && (
-                    <div 
-                      className="absolute inset-0 cursor-pointer flex items-center justify-center bg-black/5 hover:bg-black/10 transition-colors group"
+                    <div
+                      className="group absolute inset-0 flex cursor-pointer items-center justify-center bg-ink/0 transition-colors hover:bg-ink/5"
                       onClick={() => setDrawioActive(true)}
                     >
-                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-gray-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        Click to interact with diagram
-                      </div>
+                      <div className={interactHint}>Click to interact with diagram</div>
                     </div>
                   )}
                 </div>
               ) : project.slides ? (
-                <div className="w-full h-full relative overflow-hidden rounded-lg">
+                <div className="relative h-full w-full overflow-hidden rounded-chip border border-hairline">
                   <iframe
                     src={(() => {
+                      const slides = project.slides as string;
                       // If URL already has parameters, use as-is
-                      if (project.slides.includes('?')) {
-                        return project.slides;
+                      if (slides.includes('?')) {
+                        return slides;
                       }
                       // Manual navigation mode (no auto-advance)
-                      return `${project.slides}?start=false&loop=false&rm=minimal`;
+                      return `${slides}?start=false&loop=false&rm=minimal`;
                     })()}
                     className="absolute border-0"
-                    style={{ 
+                    style={{
                       top: '-26px',  // Hide the top toolbar
                       left: 0,
                       width: '100%',
@@ -249,21 +275,19 @@ const CaseStudyModal = ({
                   />
                   {/* Overlay to allow scrolling - click to interact with slides */}
                   {!slidesActive && (
-                    <div 
-                      className="absolute inset-0 cursor-pointer flex items-center justify-center bg-black/5 hover:bg-black/10 transition-colors group"
+                    <div
+                      className="group absolute inset-0 flex cursor-pointer items-center justify-center bg-ink/0 transition-colors hover:bg-ink/5"
                       onClick={() => setSlidesActive(true)}
                     >
-                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg text-gray-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        Click to interact with slides
-                      </div>
+                      <div className={interactHint}>Click to interact with slides</div>
                     </div>
                   )}
                 </div>
               ) : project.image && (
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-contain rounded-lg"
+                  className="h-full w-full rounded-chip object-contain"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = 'none';
                   }}
@@ -271,88 +295,109 @@ const CaseStudyModal = ({
               )}
             </div>
           </div>
-        
+
           {/* Modal Body - Below for slides/pdf, Right side for images */}
-          <div 
-            className="flex-1 p-3 md:p-6 overflow-y-auto bg-white"
+          <div
+            className="flex-1 overflow-y-auto bg-paper px-4 py-5 md:px-8 md:py-7"
             onClick={() => {
               if (slidesActive) setSlidesActive(false);
               if (drawioActive) setDrawioActive(false);
             }}
           >
-            <div className="max-w-none">
-              {(project.caseStudy || '').split('\n\n').map((paragraph, index) => {
-                // Check if it's a section header (single line, no bullet points, relatively short)
-                const isHeader = !paragraph.includes('•') && 
-                                 !paragraph.includes(':') && 
-                                 paragraph.split('\n').length === 1 && 
-                                 paragraph.length < 80 &&
-                                 paragraph.length > 0;
-                
-                // Check if paragraph contains bullet points
-                const hasBullets = paragraph.includes('•');
-                
+            <div className="max-w-3xl">
+              {(project.caseStudy || '').split('\n\n').map((rawParagraph, index) => {
+                const paragraph = rawParagraph.trim();
+                if (!paragraph) return null;
+
+                // Section header: "## Title", or a single short line with no bullets/colons
+                const isMarkdownHeader = paragraph.startsWith('## ');
+                const isHeader = isMarkdownHeader || (
+                  !paragraph.includes('•') &&
+                  !paragraph.includes(':') &&
+                  paragraph.split('\n').length === 1 &&
+                  paragraph.length < 80
+                );
+
                 if (isHeader) {
                   return (
-                    <h4 key={index} className="text-base md:text-lg font-semibold mt-4 md:mt-6 mb-2 md:mb-3 text-gray-800">
-                      {paragraph}
+                    <h4
+                      key={index}
+                      className={`display text-[1.6rem] text-ink md:text-[1.9rem] ${index === 0 ? 'mt-0' : 'mt-8 md:mt-10'} mb-3`}
+                    >
+                      {paragraph.replace(/^##\s+/, '')}
                     </h4>
                   );
-                } else if (hasBullets) {
-                  const lines = paragraph.split('\n').filter(line => line.trim());
-                  const headerLine = lines.find(line => !line.startsWith('•'));
-                  const bulletLines = lines.filter(line => line.startsWith('•'));
-                  
+                }
+
+                const lines = paragraph.split('\n').filter(line => line.trim());
+                const hasList = lines.some(line => bulletRe.test(line) || numberRe.test(line));
+
+                if (hasList) {
                   return (
-                    <div key={index} className="mb-3 md:mb-4">
-                      {headerLine && (
-                        <p className="font-medium text-gray-700 mb-1.5 md:mb-2 text-sm md:text-base">{headerLine}</p>
-                      )}
-                      <ul className="space-y-1 text-gray-600 text-sm md:text-base">
-                        {bulletLines.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start">
-                            <span className="mr-2 text-blue-500">•</span>
-                            <span>{item.replace('•', '').trim()}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div key={index} className="mb-5 space-y-2 text-[15px] leading-relaxed text-ink-2 md:text-base">
+                      {lines.map((line, lineIndex) => {
+                        const numberMatch = line.match(numberRe);
+                        if (numberMatch) {
+                          return (
+                            <p key={lineIndex} className="flex gap-3 pt-1 font-medium text-ink">
+                              <span className="label pt-[0.3em] text-accent">{numberMatch[1].padStart(2, '0')}</span>
+                              <span>{renderInline(line.replace(numberRe, ''))}</span>
+                            </p>
+                          );
+                        }
+                        if (bulletRe.test(line)) {
+                          const indented = /^\s{2,}/.test(line);
+                          return (
+                            <p key={lineIndex} className={`flex gap-3 ${indented ? 'pl-8' : ''}`}>
+                              <span aria-hidden="true" className="select-none text-accent">&ndash;</span>
+                              <span>{renderInline(line.replace(bulletRe, ''))}</span>
+                            </p>
+                          );
+                        }
+                        return (
+                          <p key={lineIndex} className="font-medium text-ink">
+                            {renderInline(line.trim())}
+                          </p>
+                        );
+                      })}
                     </div>
                   );
                 }
-                
+
                 return (
-                  <p key={index} className="mb-3 md:mb-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                    {paragraph}
+                  <p key={index} className="mb-4 leading-relaxed text-ink-2 md:text-[17px]">
+                    {renderInline(paragraph)}
                   </p>
                 );
               })}
             </div>
           </div>
         </div>
-        
-        {/* Modal Footer - Compact on mobile, hide tech tags on small screens */}
-        <div className="p-3 md:p-6 border-t border-gray-100 flex justify-between items-center flex-shrink-0 bg-gray-50 gap-3">
-          <div className="hidden md:flex flex-wrap items-center gap-2">
+
+        {/* Modal Footer */}
+        <div className="flex flex-shrink-0 items-center justify-between gap-3 border-t border-hairline bg-bone px-4 py-3 md:px-6 md:py-4">
+          <div className="hidden flex-wrap items-center gap-2 md:flex">
             {project.technologies.map((tech, index) => (
-              <span key={index} className="bg-white text-gray-700 px-3 py-1 rounded-full text-sm border border-gray-200 font-medium">
+              <span key={index} className="chip bg-paper">
                 {tech}
               </span>
             ))}
           </div>
           {/* Mobile: Show only first 3 tags in a compact format */}
-          <div className="flex md:hidden flex-wrap items-center gap-1.5 flex-1 overflow-hidden">
+          <div className="flex flex-1 flex-wrap items-center gap-1.5 overflow-hidden md:hidden">
             {project.technologies.slice(0, 3).map((tech, index) => (
-              <span key={index} className="bg-white text-gray-600 px-2 py-0.5 rounded-full text-xs border border-gray-200">
+              <span key={index} className="chip bg-paper">
                 {tech}
               </span>
             ))}
             {project.technologies.length > 3 && (
-              <span className="text-gray-400 text-xs">+{project.technologies.length - 3}</span>
+              <span className="label text-muted">+{project.technologies.length - 3}</span>
             )}
           </div>
-          <button 
+          <button
+            type="button"
             onClick={onClose}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-lg transition-colors font-medium text-sm md:text-base flex-shrink-0"
+            className="btn btn-sm btn-ink flex-shrink-0"
           >
             Close
           </button>
@@ -363,4 +408,4 @@ const CaseStudyModal = ({
   );
 };
 
-export default ProjectsSection; 
+export default ProjectsSection;

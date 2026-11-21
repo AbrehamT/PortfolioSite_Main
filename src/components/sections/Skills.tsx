@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeading from '../../ui/SectionHeading';
 
 interface Skill {
   category: string;
@@ -30,30 +31,22 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section 
-      id="skills" 
-      className="py-16 md:py-24" 
-      style={{ 
-        background: 'var(--section-bg-3)',
-        position: 'relative',
-        zIndex: 0,
-        paddingBottom: '2rem'
-      }}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-gray-100">Skills</h2>
-        <p className="text-gray-400 text-center mb-12">Technologies and methodologies I work with</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="skills" className="pb-8 pt-24 md:pt-36">
+      <div className="container">
+        <SectionHeading
+          number="03"
+          title="Skills"
+          subtitle="Technologies and methodologies I work with"
+        />
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
           {skills.map((skillGroup, index) => (
-            <div key={index} className="bg-gray-700 rounded-lg p-6 shadow-md border border-gray-600">
-              <h3 className="text-xl font-semibold mb-4 text-blue-300">{skillGroup.category}</h3>
-              <div className="flex flex-wrap gap-2">
+            <div key={index} className="rounded-card border border-hairline bg-paper p-6 md:p-7">
+              <p className="label text-accent">{String(index + 1).padStart(2, '0')}</p>
+              <h3 className="display mt-3 text-[2rem] text-ink md:text-[2.25rem]">{skillGroup.category}</h3>
+              <div className="mt-6 flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, skillIndex) => (
-                  <span 
-                    key={skillIndex} 
-                    className="bg-gray-800 text-gray-300 border border-gray-600 px-3 py-1 rounded-full text-sm"
-                  >
+                  <span key={skillIndex} className="chip bg-bone">
                     {skill}
                   </span>
                 ))}
@@ -66,4 +59,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection; 
+export default SkillsSection;

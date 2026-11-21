@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeading from '../../ui/SectionHeading';
 
 interface Experience {
   id: number;
@@ -77,58 +78,69 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section 
-      id="experience" 
-      className="py-16 md:py-24" 
-      style={{ 
-        background: 'var(--section-bg-1)',
-        position: 'relative',
-        zIndex: 0,
-        paddingBottom: '2rem'
-      }}
-    >
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center text-gray-100">Experience</h2>
-        <p className="text-gray-400 text-center mb-12">My professional journey and development</p>
-        
-        <div className="space-y-12">
+    <section id="experience" className="pb-8 pt-24 md:pt-36">
+      <div className="container">
+        <SectionHeading
+          number="01"
+          title="Experience"
+          subtitle="My professional journey and development"
+        />
+
+        <div className="space-y-20 md:space-y-28">
           <div>
-            <h3 className="text-2xl font-semibold mb-6 text-gray-200">Work Experience</h3>
-            <div className="space-y-8">
+            <h3 className="label mb-2 text-muted">Work Experience</h3>
+            <ol>
               {experiences.map((exp) => (
-                <div key={exp.id} className="border-l-4 border-blue-500 pl-6 py-2">
-                  <h4 className="text-xl font-semibold text-gray-100">{exp.role}</h4>
-                  <p className="text-blue-400 font-medium">{exp.company}</p>
-                  <p className="text-gray-400 mb-4">{exp.duration}</p>
-                  <ul className="list-disc list-inside space-y-2 mb-4">
-                    {exp.description.map((item, index) => (
-                      <li key={index} className="text-gray-300">{item}</li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, index) => (
-                      <span key={index} className="bg-gray-700 text-blue-300 px-3 py-1 rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
+                <li
+                  key={exp.id}
+                  className="grid grid-cols-1 gap-3 border-t border-hairline py-10 md:grid-cols-12 md:gap-10 md:py-14"
+                >
+                  <p className="label text-muted md:col-span-3 md:pt-1.5">{exp.duration}</p>
+                  <div className="md:col-span-9">
+                    <h4 className="text-[1.375rem] font-semibold leading-snug tracking-[-0.01em] text-ink md:text-[1.75rem]">
+                      {exp.role}
+                    </h4>
+                    <p className="mt-1 text-lg font-medium text-accent md:text-xl">{exp.company}</p>
+                    <ul className="mt-6 space-y-3">
+                      {exp.description.map((item, index) => (
+                        <li key={index} className="flex gap-3 leading-relaxed text-ink-2 md:text-lg">
+                          <span aria-hidden="true" className="select-none pt-[0.05em] text-accent">&ndash;</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {exp.technologies.map((tech, index) => (
+                        <span key={index} className="chip">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
-          
+
           <div>
-            <h3 className="text-2xl font-semibold mb-6 text-gray-200">Education</h3>
-            <div className="space-y-8">
+            <h3 className="label mb-2 text-muted">Education</h3>
+            <ol>
               {education.map((edu) => (
-                <div key={edu.id} className="border-l-4 border-blue-500 pl-6 py-2">
-                  <h4 className="text-xl font-semibold text-gray-100">{edu.degree}</h4>
-                  <p className="text-blue-400 font-medium">{edu.institution}</p>
-                  <p className="text-gray-400 mb-4">{edu.duration}</p>
-                  <p className="text-gray-300">{edu.description}</p>
-                </div>
+                <li
+                  key={edu.id}
+                  className="grid grid-cols-1 gap-3 border-t border-hairline py-10 md:grid-cols-12 md:gap-10 md:py-14"
+                >
+                  <p className="label text-muted md:col-span-3 md:pt-1.5">{edu.duration}</p>
+                  <div className="md:col-span-9">
+                    <h4 className="text-[1.375rem] font-semibold leading-snug tracking-[-0.01em] text-ink md:text-[1.75rem]">
+                      {edu.degree}
+                    </h4>
+                    <p className="mt-1 text-lg font-medium text-accent md:text-xl">{edu.institution}</p>
+                    <p className="mt-5 leading-relaxed text-ink-2 md:text-lg">{edu.description}</p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </div>
       </div>
@@ -136,4 +148,4 @@ const ExperienceSection = () => {
   );
 };
 
-export default ExperienceSection; 
+export default ExperienceSection;

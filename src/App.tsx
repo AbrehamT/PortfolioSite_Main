@@ -6,45 +6,23 @@ import ProjectsSection from './components/sections/Projects';
 import SkillsSection from './components/sections/Skills';
 import ContactSection from './components/sections/Contact';
 import Footer from './components/layout/Footer';
-import SectionTransition from './components/layout/SectionTransition';
 import './App.css';
 
 const App = () => {
   return (
-    <div 
-      className="min-h-screen text-gray-200"
-      style={{
-        // Theme color variables
-        '--hero-bg': '#111827', // from-gray-900
-        '--section-bg-1': '#1F2937', // bg-gray-800
-        '--section-bg-2': '#111827', // bg-gray-900
-        '--section-bg-3': '#1F2937', // bg-gray-800
-        '--contact-bg': '#111827', // bg-gray-900
-        '--footer-bg': '#111827', // bg-gray-900
-      } as React.CSSProperties}
-    >
+    <div className="min-h-screen bg-bone text-ink">
+      <a
+        href="#home"
+        className="label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-chip focus:bg-ink focus:px-4 focus:py-3 focus:text-bone"
+      >
+        Skip to content
+      </a>
       <Header />
       <main className="overflow-hidden">
         <Hero />
-        
-        {/* Hero to Experience transition */}
-        <SectionTransition fromColor="hero-bg" toColor="section-bg-1" height="90px" />
-        
         <ExperienceSection />
-        
-        {/* Experience to Projects transition */}
-        <SectionTransition fromColor="section-bg-1" toColor="section-bg-2" height="90px" />
-        
         <ProjectsSection />
-        
-        {/* Projects to Skills transition */}
-        <SectionTransition fromColor="section-bg-2" toColor="section-bg-3" height="90px" />
-        
         <SkillsSection />
-        
-        {/* Skills to Contact transition */}
-        <SectionTransition fromColor="section-bg-3" toColor="contact-bg" height="90px" />
-        
         <ContactSection />
       </main>
       <Footer />
