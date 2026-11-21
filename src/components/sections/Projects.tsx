@@ -53,6 +53,9 @@ const ProjectsSection = () => {
                   alt={project.title}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
                 />
                 <span className="label absolute left-3 top-3 rounded-chip bg-paper/90 px-2 py-1 text-ink">
                   {String(i + 1).padStart(2, '0')}
